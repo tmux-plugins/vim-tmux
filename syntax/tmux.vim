@@ -67,6 +67,8 @@ syn keyword tmuxOptsSet display-panes-active-colour alternate-screen
 syn keyword tmuxOptsSet detach-on-destroy word-separators
 syn keyword tmuxOptsSet destroy-unattached exit-unattached set-clipboard
 syn keyword tmuxOptsSet bell-on-alert mouse-select-window mouse-utf8
+syn keyword tmuxOptsSet mouse-resize-pane
+syn keyword tmuxOptsSet message-[command-]fg renumber-windows visual-silence
 
 syn keyword tmuxOptsSetw monitor-activity aggressive-resize force-width
 syn keyword tmuxOptsSetw force-height remain-on-exit uft8 mode-fg mode-bg
