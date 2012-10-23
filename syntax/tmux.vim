@@ -43,6 +43,9 @@ syn keyword tmuxCmds show-environment choose-client displayp display-panes
 syn keyword tmuxCmds run[-shell] lockc lock-client locks lock-session lsp
 syn keyword tmuxCmds list-panes pipep pipe-pane showmsgs show-messages capturep
 syn keyword tmuxCmds capture-pane joinp join-pane choose-buffer
+syn keyword tmuxCmds even-horizontal even-vertical main-horizontal main-vertical
+syn keyword tmuxCmds tiled choose-list lastp last-pane movep move-pane
+syn keyword tmuxCmds prevl previous-layout prev[-window] respawnp respawn-pane
 
 syn keyword tmuxOptsSet prefix prefix2 status status-fg status-bg bell-action
 syn keyword tmuxOptsSet default-command history-limit status-left status-right
