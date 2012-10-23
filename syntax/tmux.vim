@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language: tmux(1) configuration file
 " Maintainer: Tiago Cunha <me@tiagocunha.org>
-" Last Change: $Date: 2010-07-27 18:29:07 $
+" Last Change: $Date: 2012-10-23 12:23:55 $
 " License: This file is placed in the public domain.
 
 if version < 600
@@ -43,6 +43,9 @@ syn keyword tmuxCmds show-environment choose-client displayp display-panes
 syn keyword tmuxCmds run[-shell] lockc lock-client locks lock-session lsp
 syn keyword tmuxCmds list-panes pipep pipe-pane showmsgs show-messages capturep
 syn keyword tmuxCmds capture-pane joinp join-pane choose-buffer
+syn keyword tmuxCmds even-horizontal even-vertical main-horizontal main-vertical
+syn keyword tmuxCmds tiled choose-list lastp last-pane movep move-pane
+syn keyword tmuxCmds prevl previous-layout prev[-window] respawnp respawn-pane
 
 syn keyword tmuxOptsSet prefix prefix2 status status-fg status-bg bell-action
 syn keyword tmuxOptsSet default-command history-limit status-left status-right
@@ -64,6 +67,8 @@ syn keyword tmuxOptsSet display-panes-active-colour alternate-screen
 syn keyword tmuxOptsSet detach-on-destroy word-separators
 syn keyword tmuxOptsSet destroy-unattached exit-unattached set-clipboard
 syn keyword tmuxOptsSet bell-on-alert mouse-select-window mouse-utf8
+syn keyword tmuxOptsSet mouse-resize-pane
+syn keyword tmuxOptsSet message-[command-]fg renumber-windows visual-silence
 
 syn keyword tmuxOptsSetw monitor-activity aggressive-resize force-width
 syn keyword tmuxOptsSetw force-height remain-on-exit uft8 mode-fg mode-bg
@@ -81,31 +86,33 @@ syn keyword tmuxOptsSetw window-status-bell-bg window-status-bell-fg
 syn keyword tmuxOptsSetw window-status-content-attr
 syn keyword tmuxOptsSetw window-status-content-bg window-status-content-fg
 syn keyword tmuxOptsSetw pane-base-index other-pane-height other-pane-width
+syn keyword tmuxOptsSetw allow-rename c0-change-interval c0-change-trigger
+syn keyword tmuxOptsSetw layout-history-limit monitor-silence utf8 wrap-search
 
 syn keyword tmuxTodo FIXME NOTE TODO XXX contained
 
-syn match tmuxKey       /\(C-\|M-\|\^\)\+\S\+/  display
-syn match tmuxNumber        /\d\+/          display
-syn match tmuxOptions       /\s-\a\+/       display
-syn match tmuxVariable      /\w\+=/         display
-syn match tmuxVariableExpansion /\${\=\w\+}\=/      display
+syn match tmuxKey               /\(C-\|M-\|\^\)\+\S\+/  display
+syn match tmuxNumber            /\d\+/                  display
+syn match tmuxOptions           /\s-\a\+/               display
+syn match tmuxVariable          /\w\+=/                 display
+syn match tmuxVariableExpansion /\${\=\w\+}\=/          display
 
 syn region tmuxComment  start=/#/ end=/$/ contains=tmuxTodo display oneline
 syn region tmuxString   start=/"/ end=/"/ display oneline
 syn region tmuxString   start=/'/ end=/'/ display oneline
 
-hi def link tmuxAction          Boolean
-hi def link tmuxBoolean         Boolean
-hi def link tmuxCmds            Keyword
-hi def link tmuxComment         Comment
-hi def link tmuxKey         Special
-hi def link tmuxNumber          Number
-hi def link tmuxOptions         Identifier
-hi def link tmuxOptsSet         Function
-hi def link tmuxOptsSetw        Function
-hi def link tmuxString          String
-hi def link tmuxTodo            Todo
-hi def link tmuxVariable        Constant
+hi def link tmuxAction              Boolean
+hi def link tmuxBoolean             Boolean
+hi def link tmuxCmds                Keyword
+hi def link tmuxComment             Comment
+hi def link tmuxKey                 Special
+hi def link tmuxNumber              Number
+hi def link tmuxOptions             Identifier
+hi def link tmuxOptsSet             Function
+hi def link tmuxOptsSetw            Function
+hi def link tmuxString              String
+hi def link tmuxTodo                Todo
+hi def link tmuxVariable            Constant
 hi def link tmuxVariableExpansion   Constant
 
 let b:current_syntax = "tmux"
