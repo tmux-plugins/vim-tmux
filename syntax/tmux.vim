@@ -91,28 +91,28 @@ syn keyword tmuxOptsSetw layout-history-limit monitor-silence utf8 wrap-search
 
 syn keyword tmuxTodo FIXME NOTE TODO XXX contained
 
-syn match tmuxKey       /\(C-\|M-\|\^\)\+\S\+/  display
-syn match tmuxNumber        /\d\+/          display
-syn match tmuxOptions       /\s-\a\+/       display
-syn match tmuxVariable      /\w\+=/         display
-syn match tmuxVariableExpansion /\${\=\w\+}\=/      display
+syn match tmuxKey               /\(C-\|M-\|\^\)\+\S\+/  display
+syn match tmuxNumber            /\d\+/                  display
+syn match tmuxOptions           /\s-\a\+/               display
+syn match tmuxVariable          /\w\+=/                 display
+syn match tmuxVariableExpansion /\${\=\w\+}\=/          display
 
 syn region tmuxComment  start=/#/ end=/$/ contains=tmuxTodo display oneline
 syn region tmuxString   start=/"/ end=/"/ display oneline
 syn region tmuxString   start=/'/ end=/'/ display oneline
 
-hi def link tmuxAction          Boolean
-hi def link tmuxBoolean         Boolean
-hi def link tmuxCmds            Keyword
-hi def link tmuxComment         Comment
-hi def link tmuxKey         Special
-hi def link tmuxNumber          Number
-hi def link tmuxOptions         Identifier
-hi def link tmuxOptsSet         Function
-hi def link tmuxOptsSetw        Function
-hi def link tmuxString          String
-hi def link tmuxTodo            Todo
-hi def link tmuxVariable        Constant
+hi def link tmuxAction              Boolean
+hi def link tmuxBoolean             Boolean
+hi def link tmuxCmds                Keyword
+hi def link tmuxComment             Comment
+hi def link tmuxKey                 Special
+hi def link tmuxNumber              Number
+hi def link tmuxOptions             Identifier
+hi def link tmuxOptsSet             Function
+hi def link tmuxOptsSetw            Function
+hi def link tmuxString              String
+hi def link tmuxTodo                Todo
+hi def link tmuxVariable            Constant
 hi def link tmuxVariableExpansion   Constant
 
 let b:current_syntax = "tmux"
