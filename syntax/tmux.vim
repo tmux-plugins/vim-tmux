@@ -117,9 +117,13 @@ syn match  tmuxAttrDefault /#\[\zsdefault]/ contained display
 syn match  tmuxAttrBgFg    /[fb]g/          contained display
 syn match  tmuxAttrEquals  /[=,]/           contained display
 
+" Shell command interpolation
+syn region tmuxShellInpol   start=/#(/ skip=/#(.\{-})/ end=/)/ contained contains=tmuxShellCommand
+syn match  tmuxShellCommand /#(\zs[^)]*/ contained display
+
 syn region tmuxComment  start=/#/ end=/$/            contains=tmuxTodo display oneline
-syn region tmuxString   start=/"/ skip=/\\./ end=/"/ contains=tmuxFmtInpol,tmuxFmtAlias,tmuxAttrInpol display keepend
-syn region tmuxString   start=/'/ end=/'/            contains=tmuxFmtInpol,tmuxFmtAlias,tmuxAttrInpol display keepend
+syn region tmuxString   start=/"/ skip=/\\./ end=/"/ contains=tmuxFmtInpol,tmuxFmtAlias,tmuxAttrInpol,tmuxShellInpol display keepend
+syn region tmuxString   start=/'/ end=/'/            contains=tmuxFmtInpol,tmuxFmtAlias,tmuxAttrInpol,tmuxShellInpol display keepend
 
 hi def link tmuxAction              Boolean
 hi def link tmuxBoolean             Boolean
@@ -144,6 +148,9 @@ hi def link tmuxAttrInpol           Special
 hi def link tmuxAttrDefault         Type
 hi def link tmuxAttrBgFg            Identifier
 hi def link tmuxAttrEquals          Operator
+
+hi def link tmuxShellInpol          Special
+hi def link tmuxShellCommand        Type
 
 hi def link tmuxTodo                Todo
 hi def link tmuxVariable            Constant
