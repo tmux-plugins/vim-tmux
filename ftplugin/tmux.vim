@@ -9,6 +9,9 @@ set cpo&vim
 setlocal comments=:#
 setlocal commentstring=#\ %s
 
+" always open 'man tmux', ignore the word under cursor
+setlocal keywordprg=man\ tmux\ \\#
+
 let &cpo = s:cpo_save
 unlet s:cpo_save
 
