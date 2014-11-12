@@ -97,9 +97,15 @@ syn match tmuxOptions           /\s-\a\+/               display
 syn match tmuxVariable          /\w\+=/                 display
 syn match tmuxVariableExpansion /\${\=\w\+}\=/          display
 
+" Format interpolation
+syn region tmuxFmtInpol       start=/#{/ skip=/#{.\{-}}/ end=/}/ contained contains=tmuxFmtVariable,tmuxFmtConditional,tmuxFmtLimit
+syn match  tmuxFmtVariable    /\(\w\|-\)\+/  contained display
+syn match  tmuxFmtConditional /[?,]/         contained display
+syn match  tmuxFmtLimit       /#{\zs=.\{-}:/ contained display contains=tmuxNumber
+
 syn region tmuxComment  start=/#/ end=/$/ contains=tmuxTodo display oneline
-syn region tmuxString   start=/"/ skip=/\\./ end=/"/ display
-syn region tmuxString   start=/'/ end=/'/ display
+syn region tmuxString   start=/"/ skip=/\\./ end=/"/ contains=tmuxFmtInpol display keepend
+syn region tmuxString   start=/'/ end=/'/            contains=tmuxFmtInpol display keepend
 
 hi def link tmuxAction              Boolean
 hi def link tmuxBoolean             Boolean
@@ -112,6 +118,10 @@ hi def link tmuxOptsSet             Function
 hi def link tmuxUserOptsSet         Function
 hi def link tmuxOptsSetw            Function
 hi def link tmuxString              String
+hi def link tmuxFmtInpol            Special
+hi def link tmuxFmtVariable         Type
+hi def link tmuxFmtConditional      Conditional
+hi def link tmuxFmtLimit            Operator
 hi def link tmuxTodo                Todo
 hi def link tmuxVariable            Constant
 hi def link tmuxVariableExpansion   Constant
