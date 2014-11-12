@@ -10,6 +10,7 @@
 - fix: syntax keyword optional notation can be used only for string parts at the
   end of the file
 - add syntax highlighting for format variables
+- syntax support for format aliases
 
 ### v1.0.0, 2014-11-12
 - forked from https://github.com/zaiste/tmux.vim
