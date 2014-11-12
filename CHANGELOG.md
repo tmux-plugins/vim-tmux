@@ -7,6 +7,8 @@
 - add support for user options
 - do not check for vim version less than 6.0
 - double quote strings can be escaped
+- fix: syntax keyword optional notation can be used only for string parts at the
+  end of the file
 
 ### v1.0.0, 2014-11-12
 - forked from https://github.com/zaiste/tmux.vim
