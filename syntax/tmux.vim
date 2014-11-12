@@ -97,6 +97,11 @@ syn match tmuxOptions           /\s-\a\+/               display
 syn match tmuxVariable          /\w\+=/                 display
 syn match tmuxVariableExpansion /\${\=\w\+}\=/          display
 
+syn match tmuxColor /\(bright\)\?\(black\|red\|green\|yellow\|blue\|magenta\|cyan\|white\)/ display contained
+syn match tmuxColor /colour\d\{1,3}/ contained display
+syn match tmuxColor /#\x\{6}/        contained display
+syn match tmuxStyle /\(no\)\?\(bright\|bold\|dim\|underscore\|blink\|reverse\|hidden\|italics\)/ display contained
+
 " Format aliases
 syn match tmuxFmtAlias /#[HhDPTSFIW#]/ contained
 
@@ -106,9 +111,15 @@ syn match  tmuxFmtVariable    /\(\w\|-\)\+/  contained display
 syn match  tmuxFmtConditional /[?,]/         contained display
 syn match  tmuxFmtLimit       /#{\zs=.\{-}:/ contained display contains=tmuxNumber
 
-syn region tmuxComment  start=/#/ end=/$/ contains=tmuxTodo display oneline
-syn region tmuxString   start=/"/ skip=/\\./ end=/"/ contains=tmuxFmtInpol,tmuxFmtAlias display keepend
-syn region tmuxString   start=/'/ end=/'/            contains=tmuxFmtInpol,tmuxFmtAlias display keepend
+" Attribute interpolation
+syn region tmuxAttrInpol   start=/#\[/ skip=/#\[.\{-}]/ end=/]/ contained contains=tmuxColor,tmuxAttrDefault,tmuxAttrBgFg,tmuxAttrEquals,tmuxStyle
+syn match  tmuxAttrDefault /#\[\zsdefault]/ contained display
+syn match  tmuxAttrBgFg    /[fb]g/          contained display
+syn match  tmuxAttrEquals  /[=,]/           contained display
+
+syn region tmuxComment  start=/#/ end=/$/            contains=tmuxTodo display oneline
+syn region tmuxString   start=/"/ skip=/\\./ end=/"/ contains=tmuxFmtInpol,tmuxFmtAlias,tmuxAttrInpol display keepend
+syn region tmuxString   start=/'/ end=/'/            contains=tmuxFmtInpol,tmuxFmtAlias,tmuxAttrInpol display keepend
 
 hi def link tmuxAction              Boolean
 hi def link tmuxBoolean             Boolean
@@ -121,11 +132,19 @@ hi def link tmuxOptsSet             Function
 hi def link tmuxUserOptsSet         Function
 hi def link tmuxOptsSetw            Function
 hi def link tmuxString              String
+hi def link tmuxColor               Define
+hi def link tmuxStyle               Define
 hi def link tmuxFmtAlias            Special
 hi def link tmuxFmtInpol            Special
 hi def link tmuxFmtVariable         Type
 hi def link tmuxFmtConditional      Conditional
 hi def link tmuxFmtLimit            Operator
+
+hi def link tmuxAttrInpol           Special
+hi def link tmuxAttrDefault         Type
+hi def link tmuxAttrBgFg            Identifier
+hi def link tmuxAttrEquals          Operator
+
 hi def link tmuxTodo                Todo
 hi def link tmuxVariable            Constant
 hi def link tmuxVariableExpansion   Constant
