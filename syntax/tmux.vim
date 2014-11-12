@@ -98,8 +98,8 @@ syn match tmuxVariable          /\w\+=/                 display
 syn match tmuxVariableExpansion /\${\=\w\+}\=/          display
 
 syn region tmuxComment  start=/#/ end=/$/ contains=tmuxTodo display oneline
-syn region tmuxString   start=/"/ end=/"/ display oneline
-syn region tmuxString   start=/'/ end=/'/ display oneline
+syn region tmuxString   start=/"/ end=/"/ display
+syn region tmuxString   start=/'/ end=/'/ display
 
 hi def link tmuxAction              Boolean
 hi def link tmuxBoolean             Boolean
