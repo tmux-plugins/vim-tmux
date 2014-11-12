@@ -70,6 +70,8 @@ syn keyword tmuxOptsSet bell-on-alert mouse-select-window mouse-utf8
 syn keyword tmuxOptsSet mouse-resize-pane
 syn keyword tmuxOptsSet message-[command-]fg renumber-windows visual-silence
 
+syn match tmuxUserOptsSet /@\(\w\|-\)\+/ display
+
 syn keyword tmuxOptsSetw monitor-activity aggressive-resize force-width
 syn keyword tmuxOptsSetw force-height remain-on-exit uft8 mode-fg mode-bg
 syn keyword tmuxOptsSetw mode-keys clock-mode-colour clock-mode-style
@@ -109,6 +111,7 @@ hi def link tmuxKey                 Special
 hi def link tmuxNumber              Number
 hi def link tmuxOptions             Identifier
 hi def link tmuxOptsSet             Function
+hi def link tmuxUserOptsSet         Function
 hi def link tmuxOptsSetw            Function
 hi def link tmuxString              String
 hi def link tmuxTodo                Todo
