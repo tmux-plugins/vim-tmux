@@ -4,10 +4,8 @@
 " Last Change: $Date: 2012-10-23 12:23:55 $
 " License: This file is placed in the public domain.
 
-if version < 600
-    syntax clear
-elseif exists("b:current_syntax")
-    finish
+if exists("b:current_syntax")
+  finish
 endif
 
 setlocal iskeyword+=-
