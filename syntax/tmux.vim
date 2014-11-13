@@ -16,18 +16,23 @@ syn keyword tmuxBoolean off on
 syn keyword tmuxOptionValue top bottom left right top-left top-right
 syn keyword tmuxOptionValue bottom-left bottom-right
 syn keyword tmuxOptionValue vi emacs copy
+syn keyword tmuxOptionValue even-horizontal even-vertical main-horizontal
+syn keyword tmuxOptionValue main-vertical tiled
+
+syn keyword tmuxSpecialCmds bind[-key] unbind[-key] set[-option]
+syn keyword tmuxSpecialCmds setw set-window-option
 
 syn keyword tmuxCmds detach[-client] ls list-sessions neww new-window
-syn keyword tmuxCmds bind[-key] unbind[-key] prev[ious-window] last[-window]
-syn keyword tmuxCmds lsk list-keys set[-option] renamew rename-window selectw
+syn keyword tmuxCmds prev[ious-window] last[-window]
+syn keyword tmuxCmds lsk list-keys renamew rename-window selectw
 syn keyword tmuxCmds select-window lsw list-windows attach[-session]
 syn keyword tmuxCmds send-prefix refresh[-client] killw kill-window lsc
 syn keyword tmuxCmds list-clients linkw link-window unlinkw unlink-window
 syn keyword tmuxCmds next[-window] send[-keys] swapw swap-window
 syn keyword tmuxCmds rename[-session] kill-session switchc switch-client
 syn keyword tmuxCmds has[-session] copy-mode pasteb paste-buffer
-syn keyword tmuxCmds new[-session] start[-server] kill-server setw
-syn keyword tmuxCmds set-window-option show[-options] showw show-window-options
+syn keyword tmuxCmds new[-session] start[-server] kill-server
+syn keyword tmuxCmds show[-options] showw show-window-options
 syn keyword tmuxCmds command-prompt setb set-buffer showb show-buffer lsb
 syn keyword tmuxCmds list-buffers deleteb delete-buffer lscm list-commands
 syn keyword tmuxCmds movew move-window respawnw respawn-window
@@ -41,11 +46,10 @@ syn keyword tmuxCmds next-layout rotatew rotate-window confirm[-before]
 syn keyword tmuxCmds clearhist clear-history selectl select-layout if[-shell]
 syn keyword tmuxCmds display[-message] setenv set-environment showenv
 syn keyword tmuxCmds show-environment choose-client displayp display-panes
-syn keyword tmuxCmds run[-shell] lockc lock-client locks lock-session lsp
+syn keyword tmuxCmds lockc lock-client locks lock-session lsp
 syn keyword tmuxCmds list-panes pipep pipe-pane showmsgs show-messages capturep
 syn keyword tmuxCmds capture-pane joinp join-pane choose-buffer
-syn keyword tmuxCmds even-horizontal even-vertical main-horizontal main-vertical
-syn keyword tmuxCmds tiled choose-list lastp last-pane movep move-pane
+syn keyword tmuxCmds choose-list lastp last-pane movep move-pane
 syn keyword tmuxCmds prevl previous-layout prev[-window] respawnp respawn-pane
 
 syn keyword tmuxOptsSet prefix prefix2 status status-fg status-bg bell-action
@@ -119,6 +123,10 @@ syn keyword tmuxModeCmds switch-mode-substitute-line top-line transpose-chars
 syn keyword tmuxModeCmds tree-collapse tree-collapse-all tree-expand
 syn keyword tmuxModeCmds tree-expand-all tree-toggle up
 
+" run-shell is special when at the beginning of the line
+syn match tmuxCmds        /run\(-shell\)\?/ display
+syn match tmuxSpecialCmds /^\s*run\(-shell\)\?/ display
+
 syn region tmuxComment start=/#/ end=/$/ contains=tmuxTodo,tmuxURL display oneline
 
 syn keyword tmuxTodo FIXME NOTE TODO XXX todo contained
@@ -167,30 +175,31 @@ hi def link tmuxAction              Boolean
 hi def link tmuxBoolean             Boolean
 hi def link tmuxOptionValue         Constant
 hi def link tmuxCmds                Keyword
+hi def link tmuxSpecialCmds         Type
 hi def link tmuxComment             Comment
 hi def link tmuxKey                 Special
 hi def link tmuxKeySymbol           Special
 hi def link tmuxNumber              Number
 hi def link tmuxSelWindowOption     Number
-hi def link tmuxOptions             Identifier
-hi def link tmuxOptsSet             Function
-hi def link tmuxUserOptsSet         Function
-hi def link tmuxOptsSetw            Function
-hi def link tmuxKeyTable            Function
-hi def link tmuxModeCmds            Function
+hi def link tmuxOptions             Operator
+hi def link tmuxOptsSet             PreProc
+hi def link tmuxUserOptsSet         Identifier
+hi def link tmuxOptsSetw            PreProc
+hi def link tmuxKeyTable            PreProc
+hi def link tmuxModeCmds            Keyword
 hi def link tmuxString              String
 hi def link tmuxStringDelimiter     Delimiter
-hi def link tmuxColor               Define
-hi def link tmuxStyle               Define
+hi def link tmuxColor               Constant
+hi def link tmuxStyle               Constant
 
 hi def link tmuxPromptInpol         Special
 hi def link tmuxFmtAlias            Special
-hi def link tmuxFmtVariable         Type
+hi def link tmuxFmtVariable         Ignore
 hi def link tmuxFmtConditional      Conditional
 hi def link tmuxFmtLimit            Operator
-hi def link tmuxAttrBgFg            Identifier
+hi def link tmuxAttrBgFg            Ignore
 hi def link tmuxAttrEquals          Operator
-hi def link tmuxShellInpol          Type
+hi def link tmuxShellInpol          Ignore
 hi def link tmuxInpolDelimiter      Delimiter
 
 hi def link tmuxTodo                Todo
