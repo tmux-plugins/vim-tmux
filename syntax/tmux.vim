@@ -89,9 +89,10 @@ syn keyword tmuxOptsSetw pane-base-index other-pane-height other-pane-width
 syn keyword tmuxOptsSetw allow-rename c0-change-interval c0-change-trigger
 syn keyword tmuxOptsSetw layout-history-limit monitor-silence utf8 wrap-search
 
-syn region tmuxComment start=/#/ end=/$/ contains=tmuxTodo display oneline
+syn region tmuxComment start=/#/ end=/$/ contains=tmuxTodo,tmuxURL display oneline
 
 syn keyword tmuxTodo FIXME NOTE TODO XXX todo contained
+syn match tmuxURL `\v<(((https?|ftp|gopher)://|(mailto|file|news):)[^'  <>"]+|(www|web|w3)[a-z0-9_-]*\.[a-z0-9._-]+\.[^'  <>"]+)[a-zA-Z0-9/]` contained
 
 syn match tmuxKey               /\(C-\|M-\|\^\)\+\S\+/  display
 syn match tmuxNumber            /\d\+/                  display
@@ -153,6 +154,7 @@ hi def link tmuxShellInpol          Type
 hi def link tmuxInpolDelimiter      Delimiter
 
 hi def link tmuxTodo                Todo
+hi def link tmuxURL                 Underlined
 hi def link tmuxVariable            Constant
 hi def link tmuxVariableExpansion   Constant
 
