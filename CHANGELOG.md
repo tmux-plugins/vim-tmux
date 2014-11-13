@@ -20,6 +20,7 @@
 - highlight URLs in comments
 - support for vi-edit, emacs-edit, vi-choice, emacs-choice, vi-copy and
   emacs-copy mode keywords
+- better support for number with plus or minus +,- prefix
 
 ### v1.0.0, 2014-11-12
 - forked from https://github.com/zaiste/tmux.vim
