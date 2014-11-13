@@ -151,6 +151,12 @@ syn match tmuxStyle /\(no\)\?\(bright\|bold\|dim\|underscore\|blink\|reverse\|hi
 
 syn match tmuxPromptInpol /%[[:digit:]%]/ contained
 
+" Matching `man 3 strftime` formats
+syn match tmuxDateInpol /%[0_^#-]\?[A-DF-IMR-Z+]/     contained
+syn match tmuxDateInpol /%[0_^#-]\?[a-eghj-npr-z]/    contained
+syn match tmuxDateInpol /%[0_^#-]\?E[cCxXyY]/         contained
+syn match tmuxDateInpol /%[0_^#-]\?O[BdeHImMSuUVwWy]/ contained
+
 " Format aliases
 syn match tmuxFmtAlias /#[HhDPTSFIW#]/ contained
 
@@ -168,8 +174,8 @@ syn match  tmuxAttrEquals  /[=,]/  contained display
 " Shell command interpolation
 syn region tmuxShellInpol matchgroup=tmuxInpolDelimiter start=/#(/ skip=/#(.\{-})/ end=/)/ contained keepend
 
-syn region tmuxString matchgroup=tmuxStringDelimiter start=/"/ skip=/\\./ end=/"/ contains=tmuxFmtInpol,tmuxFmtAlias,tmuxAttrInpol,tmuxShellInpol,tmuxPromptInpol display keepend
-syn region tmuxString matchgroup=tmuxStringDelimiter start=/'/ end=/'/            contains=tmuxFmtInpol,tmuxFmtAlias,tmuxAttrInpol,tmuxShellInpol,tmuxPromptInpol display keepend
+syn region tmuxString matchgroup=tmuxStringDelimiter start=/"/ skip=/\\./ end=/"/ contains=tmuxFmtInpol,tmuxFmtAlias,tmuxAttrInpol,tmuxShellInpol,tmuxPromptInpol,tmuxDateInpol display keepend
+syn region tmuxString matchgroup=tmuxStringDelimiter start=/'/ end=/'/            contains=tmuxFmtInpol,tmuxFmtAlias,tmuxAttrInpol,tmuxShellInpol,tmuxPromptInpol,tmuxDateInpol display keepend
 
 hi def link tmuxAction              Boolean
 hi def link tmuxBoolean             Boolean
@@ -193,6 +199,7 @@ hi def link tmuxColor               Constant
 hi def link tmuxStyle               Constant
 
 hi def link tmuxPromptInpol         Special
+hi def link tmuxDateInpol           Special
 hi def link tmuxFmtAlias            Special
 hi def link tmuxFmtVariable         Ignore
 hi def link tmuxFmtConditional      Conditional
