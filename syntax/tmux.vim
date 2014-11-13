@@ -121,9 +121,9 @@ syn match  tmuxAttrEquals  /[=,]/           contained display
 syn region tmuxShellInpol   start=/#(/ skip=/#(.\{-})/ end=/)/ contained contains=tmuxShellCommand
 syn match  tmuxShellCommand /#(\zs[^)]*/ contained display
 
-syn region tmuxComment  start=/#/ end=/$/            contains=tmuxTodo display oneline
-syn region tmuxString   start=/"/ skip=/\\./ end=/"/ contains=tmuxFmtInpol,tmuxFmtAlias,tmuxAttrInpol,tmuxShellInpol display keepend
-syn region tmuxString   start=/'/ end=/'/            contains=tmuxFmtInpol,tmuxFmtAlias,tmuxAttrInpol,tmuxShellInpol display keepend
+syn region tmuxComment start=/#/ end=/$/ contains=tmuxTodo display oneline
+syn region tmuxString matchgroup=tmuxStringDelimiter start=/"/ skip=/\\./ end=/"/ contains=tmuxFmtInpol,tmuxFmtAlias,tmuxAttrInpol,tmuxShellInpol display keepend
+syn region tmuxString matchgroup=tmuxStringDelimiter start=/'/ end=/'/            contains=tmuxFmtInpol,tmuxFmtAlias,tmuxAttrInpol,tmuxShellInpol display keepend
 
 hi def link tmuxAction              Boolean
 hi def link tmuxBoolean             Boolean
@@ -136,6 +136,7 @@ hi def link tmuxOptsSet             Function
 hi def link tmuxUserOptsSet         Function
 hi def link tmuxOptsSetw            Function
 hi def link tmuxString              String
+hi def link tmuxStringDelimiter     Delimiter
 hi def link tmuxColor               Define
 hi def link tmuxStyle               Define
 hi def link tmuxFmtAlias            Special

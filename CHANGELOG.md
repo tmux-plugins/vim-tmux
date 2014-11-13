@@ -13,6 +13,7 @@
 - syntax support for format aliases
 - syntax highlighting for attribute interpolation
 - syntax highlighting for shell interpolation
+- string delimiters highlighting
 
 ### v1.0.0, 2014-11-12
 - forked from https://github.com/zaiste/tmux.vim
