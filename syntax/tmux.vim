@@ -128,7 +128,7 @@ syn keyword tmuxModeCmds tree-collapse tree-collapse-all tree-expand
 syn keyword tmuxModeCmds tree-expand-all tree-toggle up
 
 " run-shell is special when at the beginning of the line
-syn match tmuxCmds        /run\(-shell\)\?/ display
+syn match tmuxCmds            /run\(-shell\)\?/ display
 syn match tmuxSpecialCmds /^\s*run\(-shell\)\?/ display
 
 syn region tmuxComment start=/#/ end=/$/ contains=tmuxTodo,tmuxURL display oneline
@@ -138,7 +138,7 @@ syn match tmuxURL `\v<(((https?|ftp|gopher)://|(mailto|file|news):)[^'  <>"]+|(w
 
 syn match tmuxKey               /\(C-\|M-\|\^\)\+\S\+/  display
 syn match tmuxNumber            /[+-]\?\d\+/            display
-syn match tmuxSelWindowOption   /:[!+-]/                display
+syn match tmuxSelWindowOption   /:[!+-]\?/              display
 syn match tmuxOptions           /\s-\a\+/               display
 syn match tmuxVariable          /\w\+=/                 display
 syn match tmuxVariableExpansion /\${\=\w\+}\=/          display
@@ -153,6 +153,7 @@ syn match tmuxColor /\(bright\)\?\(black\|red\|green\|yellow\|blue\|magenta\|cya
 syn match tmuxColor /default/        display
 syn match tmuxColor /colour\d\{1,3}/ display
 syn match tmuxColor /#\x\{6}/        display
+
 syn match tmuxStyle /\(no\)\?\(bright\|bold\|dim\|underscore\|blink\|reverse\|hidden\|italics\)/ display
 
 syn match tmuxPromptInpol /%[[:digit:]%]/ contained
