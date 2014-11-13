@@ -68,7 +68,7 @@ syn keyword tmuxOptsSet bell-on-alert mouse-select-window mouse-utf8
 syn keyword tmuxOptsSet mouse-resize-pane
 syn keyword tmuxOptsSet renumber-windows visual-silence
 
-syn match tmuxUserOptsSet /@\(\w\|-\)\+/ display
+syn match tmuxUserOptsSet /@[[:alnum:]_-]\+/ display
 
 syn keyword tmuxOptsSetw monitor-activity aggressive-resize force-width
 syn keyword tmuxOptsSetw force-height remain-on-exit uft8 mode-fg mode-bg
