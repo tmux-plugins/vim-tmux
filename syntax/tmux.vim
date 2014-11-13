@@ -89,7 +89,9 @@ syn keyword tmuxOptsSetw pane-base-index other-pane-height other-pane-width
 syn keyword tmuxOptsSetw allow-rename c0-change-interval c0-change-trigger
 syn keyword tmuxOptsSetw layout-history-limit monitor-silence utf8 wrap-search
 
-syn keyword tmuxTodo FIXME NOTE TODO XXX contained
+syn region tmuxComment start=/#/ end=/$/ contains=tmuxTodo display oneline
+
+syn keyword tmuxTodo FIXME NOTE TODO XXX todo contained
 
 syn match tmuxKey               /\(C-\|M-\|\^\)\+\S\+/  display
 syn match tmuxNumber            /\d\+/                  display
@@ -97,10 +99,11 @@ syn match tmuxOptions           /\s-\a\+/               display
 syn match tmuxVariable          /\w\+=/                 display
 syn match tmuxVariableExpansion /\${\=\w\+}\=/          display
 
-syn match tmuxColor /\(bright\)\?\(black\|red\|green\|yellow\|blue\|magenta\|cyan\|white\)/ display contained
-syn match tmuxColor /colour\d\{1,3}/ contained display
-syn match tmuxColor /#\x\{6}/        contained display
-syn match tmuxStyle /\(no\)\?\(bright\|bold\|dim\|underscore\|blink\|reverse\|hidden\|italics\)/ display contained
+syn match tmuxColor /\(bright\)\?\(black\|red\|green\|yellow\|blue\|magenta\|cyan\|white\)/ display
+syn match tmuxColor /default/        display
+syn match tmuxColor /colour\d\{1,3}/ display
+syn match tmuxColor /#\x\{6}/        display
+syn match tmuxStyle /\(no\)\?\(bright\|bold\|dim\|underscore\|blink\|reverse\|hidden\|italics\)/ display
 
 " Format aliases
 syn match tmuxFmtAlias /#[HhDPTSFIW#]/ contained
@@ -119,7 +122,6 @@ syn match  tmuxAttrEquals  /[=,]/  contained display
 " Shell command interpolation
 syn region tmuxShellInpol matchgroup=tmuxInpolDelimiter start=/#(/ skip=/#(.\{-})/ end=/)/ contained keepend
 
-syn region tmuxComment start=/#/ end=/$/ contains=tmuxTodo display oneline
 syn region tmuxString matchgroup=tmuxStringDelimiter start=/"/ skip=/\\./ end=/"/ contains=tmuxFmtInpol,tmuxFmtAlias,tmuxAttrInpol,tmuxShellInpol display keepend
 syn region tmuxString matchgroup=tmuxStringDelimiter start=/'/ end=/'/            contains=tmuxFmtInpol,tmuxFmtAlias,tmuxAttrInpol,tmuxShellInpol display keepend
 
