@@ -89,6 +89,33 @@ syn keyword tmuxOptsSetw pane-base-index other-pane-height other-pane-width
 syn keyword tmuxOptsSetw allow-rename c0-change-interval c0-change-trigger
 syn keyword tmuxOptsSetw layout-history-limit monitor-silence utf8 wrap-search
 
+" concatenating flag '-t' and table name is a valid syntax
+syn keyword tmuxKeyTable vi-edit emacs-edit vi-choice emacs-choice vi-copy
+syn keyword tmuxKeyTable emacs-copy -tvi-edit -temacs-edit -tvi-choice
+syn keyword tmuxKeyTable -temacs-choice -tvi-copy -temacs-copy
+
+" keywords for vi/emacs edit, choice and copy modes
+syn keyword tmuxModeCmds append-selection back-to-indentation backspace
+syn keyword tmuxModeCmds begin-selection bottom-line cancel choose clear-selection
+syn keyword tmuxModeCmds complete copy-end-of-line copy-pipe copy-selection
+syn keyword tmuxModeCmds cursor-down cursor-left cursor-right cursor-up delete
+syn keyword tmuxModeCmds delete-end-of-line delete-line delete-word down
+syn keyword tmuxModeCmds end-of-line end-of-list enter goto-line halfpage-down
+syn keyword tmuxModeCmds halfpage-up history-bottom history-down history-top
+syn keyword tmuxModeCmds history-up jump-again jump-backward jump-forward
+syn keyword tmuxModeCmds jump-reverse jump-to-backward jump-to-forward middle-line
+syn keyword tmuxModeCmds next-space next-space-end next-word next-word-end other-end
+syn keyword tmuxModeCmds page-down page-up paste previous-space previous-word
+syn keyword tmuxModeCmds rectangle-toggle scroll-down scroll-up search-again
+syn keyword tmuxModeCmds search-backward search-forward search-reverse
+syn keyword tmuxModeCmds start-named-buffer start-number-prefix start-of-line
+syn keyword tmuxModeCmds start-of-list switch-mode switch-mode-append
+syn keyword tmuxModeCmds switch-mode-append-line switch-mode-begin-line
+syn keyword tmuxModeCmds switch-mode-change-line switch-mode-substitute
+syn keyword tmuxModeCmds switch-mode-substitute-line top-line transpose-chars
+syn keyword tmuxModeCmds tree-collapse tree-collapse-all tree-expand
+syn keyword tmuxModeCmds tree-expand-all tree-toggle up
+
 syn region tmuxComment start=/#/ end=/$/ contains=tmuxTodo,tmuxURL display oneline
 
 syn keyword tmuxTodo FIXME NOTE TODO XXX todo contained
@@ -138,6 +165,8 @@ hi def link tmuxOptions             Identifier
 hi def link tmuxOptsSet             Function
 hi def link tmuxUserOptsSet         Function
 hi def link tmuxOptsSetw            Function
+hi def link tmuxKeyTable            Function
+hi def link tmuxModeCmds            Function
 hi def link tmuxString              String
 hi def link tmuxStringDelimiter     Delimiter
 hi def link tmuxColor               Define
