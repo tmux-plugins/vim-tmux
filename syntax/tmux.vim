@@ -107,15 +107,14 @@ syn match tmuxFmtAlias /#[HhDPTSFIW#]/ contained
 
 " Format interpolation
 syn region tmuxFmtInpol matchgroup=tmuxInpolDelimiter start=/#{/ skip=/#{.\{-}}/ end=/}/ contained keepend contains=tmuxFmtVariable,tmuxFmtConditional,tmuxFmtLimit
-syn match  tmuxFmtVariable    /\(\w\|-\)\+/  contained display
-syn match  tmuxFmtConditional /[?,]/         contained display
-syn match  tmuxFmtLimit       /#{\zs=.\{-}:/ contained display contains=tmuxNumber
+syn match  tmuxFmtVariable    /[[:alnum:]_-]\+/ contained display
+syn match  tmuxFmtConditional /[?,]/            contained display
+syn match  tmuxFmtLimit       /=.\{-}:/         contained display contains=tmuxNumber
 
 " Attribute interpolation
-syn region tmuxAttrInpol matchgroup=tmuxInpolDelimiter start=/#\[/ skip=/#\[.\{-}]/ end=/]/ contained keepend contains=tmuxColor,tmuxAttrDefault,tmuxAttrBgFg,tmuxAttrEquals,tmuxStyle
-syn match  tmuxAttrDefault /#\[\zsdefault]/ contained display
-syn match  tmuxAttrBgFg    /[fb]g/          contained display
-syn match  tmuxAttrEquals  /[=,]/           contained display
+syn region tmuxAttrInpol matchgroup=tmuxInpolDelimiter start=/#\[/ skip=/#\[.\{-}]/ end=/]/ contained keepend contains=tmuxColor,tmuxAttrBgFg,tmuxAttrEquals,tmuxStyle
+syn match  tmuxAttrBgFg    /[fb]g/ contained display
+syn match  tmuxAttrEquals  /[=,]/  contained display
 
 " Shell command interpolation
 syn region tmuxShellInpol matchgroup=tmuxInpolDelimiter start=/#(/ skip=/#(.\{-})/ end=/)/ contained keepend
@@ -143,7 +142,6 @@ hi def link tmuxFmtAlias            Special
 hi def link tmuxFmtVariable         Type
 hi def link tmuxFmtConditional      Conditional
 hi def link tmuxFmtLimit            Operator
-hi def link tmuxAttrDefault         Type
 hi def link tmuxAttrBgFg            Identifier
 hi def link tmuxAttrEquals          Operator
 hi def link tmuxShellInpol          Type
