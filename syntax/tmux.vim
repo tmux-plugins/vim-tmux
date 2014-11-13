@@ -167,9 +167,10 @@ syn match  tmuxFmtConditional /[?,]/            contained display
 syn match  tmuxFmtLimit       /=.\{-}:/         contained display contains=tmuxNumber
 
 " Attribute interpolation
-syn region tmuxAttrInpol matchgroup=tmuxInpolDelimiter start=/#\[/ skip=/#\[.\{-}]/ end=/]/ contained keepend contains=tmuxColor,tmuxAttrBgFg,tmuxAttrEquals,tmuxStyle
-syn match  tmuxAttrBgFg    /[fb]g/ contained display
-syn match  tmuxAttrEquals  /[=,]/  contained display
+syn region tmuxAttrInpol matchgroup=tmuxInpolDelimiter start=/#\[/ skip=/#\[.\{-}]/ end=/]/ contained keepend contains=tmuxColor,tmuxAttrBgFg,tmuxAttrEquals,tmuxAttrSeparator,tmuxStyle
+syn match  tmuxAttrBgFg      /[fb]g/ contained display
+syn match  tmuxAttrEquals    /=/     contained display
+syn match  tmuxAttrSeparator /,/     contained display
 
 " Shell command interpolation
 syn region tmuxShellInpol matchgroup=tmuxInpolDelimiter start=/#(/ skip=/#(.\{-})/ end=/)/ contained keepend
@@ -206,6 +207,7 @@ hi def link tmuxFmtConditional      Conditional
 hi def link tmuxFmtLimit            Operator
 hi def link tmuxAttrBgFg            Constant
 hi def link tmuxAttrEquals          Operator
+hi def link tmuxAttrSeparator       Operator
 hi def link tmuxShellInpol          String
 hi def link tmuxInpolDelimiter      Delimiter
 
