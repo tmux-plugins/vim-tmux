@@ -13,6 +13,9 @@ syntax case match
 
 syn keyword tmuxAction  any current none
 syn keyword tmuxBoolean off on
+syn keyword tmuxOptionValue top bottom left right top-left top-right
+syn keyword tmuxOptionValue bottom-left bottom-right
+syn keyword tmuxOptionValue vi emacs copy
 
 syn keyword tmuxCmds detach[-client] ls list-sessions neww new-window
 syn keyword tmuxCmds bind[-key] unbind[-key] prev[ious-window] last[-window]
@@ -127,6 +130,10 @@ syn match tmuxOptions           /\s-\a\+/               display
 syn match tmuxVariable          /\w\+=/                 display
 syn match tmuxVariableExpansion /\${\=\w\+}\=/          display
 
+" These keys can be used for the 'bind' command
+syn keyword tmuxKeySymbol Enter Escape Space BSpace Home End NPage PPage Tab DC
+syn keyword tmuxKeySymbol Up Down Left Right
+
 syn match tmuxColor /\(bright\)\?\(black\|red\|green\|yellow\|blue\|magenta\|cyan\|white\)/ display
 syn match tmuxColor /default/        display
 syn match tmuxColor /colour\d\{1,3}/ display
@@ -157,9 +164,11 @@ syn region tmuxString matchgroup=tmuxStringDelimiter start=/'/ end=/'/          
 
 hi def link tmuxAction              Boolean
 hi def link tmuxBoolean             Boolean
+hi def link tmuxOptionValue         Constant
 hi def link tmuxCmds                Keyword
 hi def link tmuxComment             Comment
 hi def link tmuxKey                 Special
+hi def link tmuxKeySymbol           Special
 hi def link tmuxNumber              Number
 hi def link tmuxOptions             Identifier
 hi def link tmuxOptsSet             Function
