@@ -201,12 +201,12 @@ hi def link tmuxStyle               Constant
 hi def link tmuxPromptInpol         Special
 hi def link tmuxDateInpol           Special
 hi def link tmuxFmtAlias            Special
-hi def link tmuxFmtVariable         Ignore
+hi def link tmuxFmtVariable         Constant
 hi def link tmuxFmtConditional      Conditional
 hi def link tmuxFmtLimit            Operator
-hi def link tmuxAttrBgFg            Ignore
+hi def link tmuxAttrBgFg            Constant
 hi def link tmuxAttrEquals          Operator
-hi def link tmuxShellInpol          Ignore
+hi def link tmuxShellInpol          String
 hi def link tmuxInpolDelimiter      Delimiter
 
 hi def link tmuxTodo                Todo
