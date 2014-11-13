@@ -1,7 +1,11 @@
 " Vim syntax file
 " Language: tmux(1) configuration file
-" Maintainer: Tiago Cunha <me@tiagocunha.org>
-" Last Change: $Date: 2012-10-23 12:23:55 $
+" URL:      https://github.com/tmux-plugins/vim-tmux
+"
+" Header from the original author
+" --------------------------------------------------
+" Creator: Tiago Cunha <me@tiagocunha.org>
+" Last Change By The Creator: $Date: 2012-10-23 12:23:55 $
 " License: This file is placed in the public domain.
 
 if exists("b:current_syntax")
