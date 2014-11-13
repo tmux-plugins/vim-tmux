@@ -25,6 +25,7 @@
 - support for bind key symbols
 - support for select-window option format
 - support for strftime interpolation in strings
+- improve a groups of keys that can be bound to a command
 
 ### v1.0.0, 2014-11-12
 - forked from https://github.com/zaiste/tmux.vim

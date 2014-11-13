@@ -140,7 +140,9 @@ syn match tmuxVariable          /\w\+=/                 display
 syn match tmuxVariableExpansion /\${\=\w\+}\=/          display
 
 " These keys can be used for the 'bind' command
-syn keyword tmuxKeySymbol Enter Escape Space BSpace Home End NPage PPage Tab DC
+syn keyword tmuxKeySymbol Enter Escape Space BSpace Home End Tab BTab DC IC
+syn keyword tmuxKeySymbol F1 F2 F3 F4 F5 F6 F7 F8 F9 F10 F11 F12
+syn keyword tmuxKeySymbol NPage PageDown PgDn PPage PageUp PgUp
 syn keyword tmuxKeySymbol Up Down Left Right
 
 syn match tmuxColor /\(bright\)\?\(black\|red\|green\|yellow\|blue\|magenta\|cyan\|white\)/ display
