@@ -106,20 +106,19 @@ syn match tmuxStyle /\(no\)\?\(bright\|bold\|dim\|underscore\|blink\|reverse\|hi
 syn match tmuxFmtAlias /#[HhDPTSFIW#]/ contained
 
 " Format interpolation
-syn region tmuxFmtInpol       start=/#{/ skip=/#{.\{-}}/ end=/}/ contained contains=tmuxFmtVariable,tmuxFmtConditional,tmuxFmtLimit
+syn region tmuxFmtInpol matchgroup=tmuxInpolDelimiter start=/#{/ skip=/#{.\{-}}/ end=/}/ contained keepend contains=tmuxFmtVariable,tmuxFmtConditional,tmuxFmtLimit
 syn match  tmuxFmtVariable    /\(\w\|-\)\+/  contained display
 syn match  tmuxFmtConditional /[?,]/         contained display
 syn match  tmuxFmtLimit       /#{\zs=.\{-}:/ contained display contains=tmuxNumber
 
 " Attribute interpolation
-syn region tmuxAttrInpol   start=/#\[/ skip=/#\[.\{-}]/ end=/]/ contained contains=tmuxColor,tmuxAttrDefault,tmuxAttrBgFg,tmuxAttrEquals,tmuxStyle
+syn region tmuxAttrInpol matchgroup=tmuxInpolDelimiter start=/#\[/ skip=/#\[.\{-}]/ end=/]/ contained keepend contains=tmuxColor,tmuxAttrDefault,tmuxAttrBgFg,tmuxAttrEquals,tmuxStyle
 syn match  tmuxAttrDefault /#\[\zsdefault]/ contained display
 syn match  tmuxAttrBgFg    /[fb]g/          contained display
 syn match  tmuxAttrEquals  /[=,]/           contained display
 
 " Shell command interpolation
-syn region tmuxShellInpol   start=/#(/ skip=/#(.\{-})/ end=/)/ contained contains=tmuxShellCommand
-syn match  tmuxShellCommand /#(\zs[^)]*/ contained display
+syn region tmuxShellInpol matchgroup=tmuxInpolDelimiter start=/#(/ skip=/#(.\{-})/ end=/)/ contained keepend
 
 syn region tmuxComment start=/#/ end=/$/ contains=tmuxTodo display oneline
 syn region tmuxString matchgroup=tmuxStringDelimiter start=/"/ skip=/\\./ end=/"/ contains=tmuxFmtInpol,tmuxFmtAlias,tmuxAttrInpol,tmuxShellInpol display keepend
@@ -139,19 +138,16 @@ hi def link tmuxString              String
 hi def link tmuxStringDelimiter     Delimiter
 hi def link tmuxColor               Define
 hi def link tmuxStyle               Define
+
 hi def link tmuxFmtAlias            Special
-hi def link tmuxFmtInpol            Special
 hi def link tmuxFmtVariable         Type
 hi def link tmuxFmtConditional      Conditional
 hi def link tmuxFmtLimit            Operator
-
-hi def link tmuxAttrInpol           Special
 hi def link tmuxAttrDefault         Type
 hi def link tmuxAttrBgFg            Identifier
 hi def link tmuxAttrEquals          Operator
-
-hi def link tmuxShellInpol          Special
-hi def link tmuxShellCommand        Type
+hi def link tmuxShellInpol          Type
+hi def link tmuxInpolDelimiter      Delimiter
 
 hi def link tmuxTodo                Todo
 hi def link tmuxVariable            Constant
