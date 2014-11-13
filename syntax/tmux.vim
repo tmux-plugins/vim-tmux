@@ -126,6 +126,7 @@ syn match tmuxURL `\v<(((https?|ftp|gopher)://|(mailto|file|news):)[^'  <>"]+|(w
 
 syn match tmuxKey               /\(C-\|M-\|\^\)\+\S\+/  display
 syn match tmuxNumber            /[+-]\?\d\+/            display
+syn match tmuxSelWindowOption   /:[!+-]/                display
 syn match tmuxOptions           /\s-\a\+/               display
 syn match tmuxVariable          /\w\+=/                 display
 syn match tmuxVariableExpansion /\${\=\w\+}\=/          display
@@ -170,6 +171,7 @@ hi def link tmuxComment             Comment
 hi def link tmuxKey                 Special
 hi def link tmuxKeySymbol           Special
 hi def link tmuxNumber              Number
+hi def link tmuxSelWindowOption     Number
 hi def link tmuxOptions             Identifier
 hi def link tmuxOptsSet             Function
 hi def link tmuxUserOptsSet         Function
