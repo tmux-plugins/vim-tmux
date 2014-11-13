@@ -105,6 +105,8 @@ syn match tmuxColor /colour\d\{1,3}/ display
 syn match tmuxColor /#\x\{6}/        display
 syn match tmuxStyle /\(no\)\?\(bright\|bold\|dim\|underscore\|blink\|reverse\|hidden\|italics\)/ display
 
+syn match tmuxPromptInpol /%[[:digit:]%]/ contained
+
 " Format aliases
 syn match tmuxFmtAlias /#[HhDPTSFIW#]/ contained
 
@@ -122,8 +124,8 @@ syn match  tmuxAttrEquals  /[=,]/  contained display
 " Shell command interpolation
 syn region tmuxShellInpol matchgroup=tmuxInpolDelimiter start=/#(/ skip=/#(.\{-})/ end=/)/ contained keepend
 
-syn region tmuxString matchgroup=tmuxStringDelimiter start=/"/ skip=/\\./ end=/"/ contains=tmuxFmtInpol,tmuxFmtAlias,tmuxAttrInpol,tmuxShellInpol display keepend
-syn region tmuxString matchgroup=tmuxStringDelimiter start=/'/ end=/'/            contains=tmuxFmtInpol,tmuxFmtAlias,tmuxAttrInpol,tmuxShellInpol display keepend
+syn region tmuxString matchgroup=tmuxStringDelimiter start=/"/ skip=/\\./ end=/"/ contains=tmuxFmtInpol,tmuxFmtAlias,tmuxAttrInpol,tmuxShellInpol,tmuxPromptInpol display keepend
+syn region tmuxString matchgroup=tmuxStringDelimiter start=/'/ end=/'/            contains=tmuxFmtInpol,tmuxFmtAlias,tmuxAttrInpol,tmuxShellInpol,tmuxPromptInpol display keepend
 
 hi def link tmuxAction              Boolean
 hi def link tmuxBoolean             Boolean
@@ -140,6 +142,7 @@ hi def link tmuxStringDelimiter     Delimiter
 hi def link tmuxColor               Define
 hi def link tmuxStyle               Define
 
+hi def link tmuxPromptInpol         Special
 hi def link tmuxFmtAlias            Special
 hi def link tmuxFmtVariable         Type
 hi def link tmuxFmtConditional      Conditional

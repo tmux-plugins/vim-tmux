@@ -16,6 +16,7 @@
 - string delimiters highlighting
 - use delimiter highlighting groups for interpolation regions
 - proper support for colors, fix bug for hex colors
+- support for prompt interpolation chars
 
 ### v1.0.0, 2014-11-12
 - forked from https://github.com/zaiste/tmux.vim
