@@ -142,6 +142,7 @@ syn match tmuxSelWindowOption   /:[!+-]\?/              display
 syn match tmuxOptions           /\s-\a\+/               display
 syn match tmuxVariable          /\w\+=/                 display
 syn match tmuxVariableExpansion /\${\=\w\+}\=/          display
+syn match tmuxAdditionalCommand /\\;/ display
 
 " These keys can be used for the 'bind' command
 syn keyword tmuxKeySymbol Enter Escape Space BSpace Home End Tab BTab DC IC
@@ -222,5 +223,6 @@ hi def link tmuxTodo                Todo
 hi def link tmuxURL                 Underlined
 hi def link tmuxVariable            Constant
 hi def link tmuxVariableExpansion   Constant
+hi def link tmuxAdditionalCommand   Special
 
 let b:current_syntax = "tmux"
