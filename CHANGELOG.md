@@ -1,6 +1,7 @@
 # Changelog
 
 ### master
+- makeprg and errorformat
 
 ### v2.0.0, 2014-11-14
 - add 'comment' and 'commentstring'
