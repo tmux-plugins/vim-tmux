@@ -1,6 +1,6 @@
 # Changelog
 
-### master
+### v2.1.0, 2014-11-14
 - makeprg and errorformat
 - improve the readme
 
