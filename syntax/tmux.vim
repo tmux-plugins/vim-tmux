@@ -22,6 +22,7 @@ syn keyword tmuxOptionValue bottom-left bottom-right
 syn keyword tmuxOptionValue vi emacs copy
 syn keyword tmuxOptionValue even-horizontal even-vertical main-horizontal
 syn keyword tmuxOptionValue main-vertical tiled
+syn keyword tmuxOptionValue bash zsh fish
 
 syn keyword tmuxSpecialCmds bind[-key] unbind[-key] set[-option]
 syn keyword tmuxSpecialCmds setw set-window-option
