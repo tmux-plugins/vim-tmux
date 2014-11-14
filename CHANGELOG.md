@@ -2,6 +2,7 @@
 
 ### master
 - makeprg and errorformat
+- improve the readme
 
 ### v2.0.0, 2014-11-14
 - add 'comment' and 'commentstring'

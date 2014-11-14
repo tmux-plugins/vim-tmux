@@ -2,12 +2,17 @@
 
 Vim filetype plugin for `.tmux.conf`.
 
-Based on Tiago Cunha's work, this plugin brings many
-improvements and bug fixes to the original
-[tmux.vim](http://tmux.svn.sourceforge.net/viewvc/tmux/trunk/examples/tmux.vim?revision=2783&view=markup)
-script.
+### Features
 
-Check the [changelog](CHANGELOG.md) for all the improvements.
+Pretty much standard filetype plugin features:
+
+* proper syntax highlighting for `.tmux.conf`
+* `commentstring`<br/>
+  So that plugins like [vim-commentary](https://github.com/tpope/vim-commentary)
+  work as intended.
+* `makeprg`<br/>
+  `:make` will invoke tmux source `.tmux.conf` and place all the errors
+  (if any) in quicklist.
 
 ### Installation
 
@@ -25,6 +30,9 @@ Check the [changelog](CHANGELOG.md) for all the improvements.
   turned it into proper vim plugin and added improvements.
 
 Thanks to both of them.
+
+Check the [changelog](CHANGELOG.md) for a list of all the improvements in this
+fork.
 
 ### License
 
