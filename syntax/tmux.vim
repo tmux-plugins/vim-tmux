@@ -18,7 +18,7 @@ syntax case match
 syn keyword tmuxAction  any current none
 syn keyword tmuxBoolean off on
 syn keyword tmuxOptionValue top bottom left right top-left top-right
-syn keyword tmuxOptionValue bottom-left bottom-right
+syn keyword tmuxOptionValue bottom-left bottom-right centre
 syn keyword tmuxOptionValue vi emacs copy
 syn keyword tmuxOptionValue even-horizontal even-vertical main-horizontal
 syn keyword tmuxOptionValue main-vertical tiled
