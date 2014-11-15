@@ -55,7 +55,7 @@ syn keyword tmuxCmds lockc lock-client locks lock-session lsp
 syn keyword tmuxCmds list-panes pipep pipe-pane showmsgs show-messages capturep
 syn keyword tmuxCmds capture-pane joinp join-pane choose-buffer
 syn keyword tmuxCmds choose-list lastp last-pane movep move-pane
-syn keyword tmuxCmds prevl previous-layout prev[-window] respawnp respawn-pane
+syn keyword tmuxCmds prevl previous-layout respawnp respawn-pane
 
 syn keyword tmuxOptsSet prefix prefix2 status status-fg status-bg bell-action
 syn keyword tmuxOptsSet default-command history-limit status-left status-right
@@ -83,7 +83,7 @@ syn keyword tmuxOptsSet renumber-windows visual-silence
 syn match tmuxUserOptsSet /@[[:alnum:]_-]\+/ display
 
 syn keyword tmuxOptsSetw monitor-activity aggressive-resize force-width
-syn keyword tmuxOptsSetw force-height remain-on-exit uft8 mode-fg mode-bg
+syn keyword tmuxOptsSetw force-height remain-on-exit mode-fg mode-bg
 syn keyword tmuxOptsSetw mode-keys clock-mode-colour clock-mode-style
 syn keyword tmuxOptsSetw xterm-keys mode-attr window-status-attr
 syn keyword tmuxOptsSetw window-status-bg window-status-fg automatic-rename
