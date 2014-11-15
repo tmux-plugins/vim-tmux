@@ -24,38 +24,44 @@ syn keyword tmuxOptionValue even-horizontal even-vertical main-horizontal
 syn keyword tmuxOptionValue main-vertical tiled
 syn keyword tmuxOptionValue bash zsh fish
 
-syn keyword tmuxSpecialCmds bind[-key] unbind[-key] set[-option]
-syn keyword tmuxSpecialCmds setw set-window-option
+syn keyword tmuxClientSessionCmds attach[-session] detach[-client] has[-session]
+syn keyword tmuxClientSessionCmds kill-server kill-session lsc list-clients lscm
+syn keyword tmuxClientSessionCmds list-commands ls list-sessions lockc lock-client
+syn keyword tmuxClientSessionCmds locks lock-session new[-session] refresh[-client]
+syn keyword tmuxClientSessionCmds rename[-session] showmsgs show-messages
+syn keyword tmuxClientSessionCmds source[-file] start[-server] suspendc
+syn keyword tmuxClientSessionCmds suspend-client switchc switch-client
 
-syn keyword tmuxCmds detach[-client] ls list-sessions neww new-window
-syn keyword tmuxCmds prev[ious-window] last[-window]
-syn keyword tmuxCmds lsk list-keys renamew rename-window selectw
-syn keyword tmuxCmds select-window lsw list-windows attach[-session]
-syn keyword tmuxCmds send-prefix refresh[-client] killw kill-window lsc
-syn keyword tmuxCmds list-clients linkw link-window unlinkw unlink-window
-syn keyword tmuxCmds next[-window] send[-keys] swapw swap-window
-syn keyword tmuxCmds rename[-session] kill-session switchc switch-client
-syn keyword tmuxCmds has[-session] copy-mode pasteb paste-buffer
-syn keyword tmuxCmds new[-session] start[-server] kill-server
-syn keyword tmuxCmds show[-options] showw show-window-options
-syn keyword tmuxCmds command-prompt setb set-buffer showb show-buffer lsb
-syn keyword tmuxCmds list-buffers deleteb delete-buffer lscm list-commands
-syn keyword tmuxCmds movew move-window respawnw respawn-window
-syn keyword tmuxCmds source[-file] info server-info clock-mode lock[-server]
-syn keyword tmuxCmds saveb save-buffer killp
-syn keyword tmuxCmds kill-pane resizep resize-pane selectp select-pane swapp
-syn keyword tmuxCmds swap-pane splitw split-window choose-session
-syn keyword tmuxCmds choose-window loadb load-buffer copyb copy-buffer suspendc
-syn keyword tmuxCmds suspend-client findw find-window breakp break-pane nextl
-syn keyword tmuxCmds next-layout rotatew rotate-window confirm[-before]
-syn keyword tmuxCmds clearhist clear-history selectl select-layout if[-shell]
-syn keyword tmuxCmds display[-message] setenv set-environment showenv
-syn keyword tmuxCmds show-environment choose-client displayp display-panes
-syn keyword tmuxCmds lockc lock-client locks lock-session lsp
-syn keyword tmuxCmds list-panes pipep pipe-pane showmsgs show-messages capturep
-syn keyword tmuxCmds capture-pane joinp join-pane choose-buffer
-syn keyword tmuxCmds choose-list lastp last-pane movep move-pane
-syn keyword tmuxCmds prevl previous-layout respawnp respawn-pane
+syn keyword tmuxWindowPaneCmds copy-mode breakp break-pane capturep capture-pane
+syn keyword tmuxWindowPaneCmds choose-client choose-session choose-tree
+syn keyword tmuxWindowPaneCmds choose-window displayp display-panes findw
+syn keyword tmuxWindowPaneCmds find-window joinp join-pane killp kill-pane
+syn keyword tmuxWindowPaneCmds killw kill-window lastp last-pane last[-window]
+syn keyword tmuxWindowPaneCmds linkw link-window lsp list-panes lsw list-windows
+syn keyword tmuxWindowPaneCmds movep move-pane movew move-window neww new-window
+syn keyword tmuxWindowPaneCmds nextl next-layout next[-window] pipep pipe-pane
+syn keyword tmuxWindowPaneCmds prevl previous-layout prev[ious-window] renamew
+syn keyword tmuxWindowPaneCmds rename-window resizep resize-pane respawnp
+syn keyword tmuxWindowPaneCmds respawn-pane respawnw respawn-window rotatew
+syn keyword tmuxWindowPaneCmds rotate-window selectl select-layout selectp
+syn keyword tmuxWindowPaneCmds select-pane selectw select-window splitw
+syn keyword tmuxWindowPaneCmds split-window swapp swap-pane swapw swap-window
+syn keyword tmuxWindowPaneCmds unlinkw unlink-window
+
+syn keyword tmuxBindingCmds lsk list-keys send[-keys] send-prefix
+
+syn keyword tmuxEnvironmentCmds setenv set-environment showenv show-environment
+
+syn keyword tmuxStatusLineCmds command-prompt confirm[-before] display[-message]
+
+syn keyword tmuxBufferCmds choose-buffer clearhist clear-history deleteb
+syn keyword tmuxBufferCmds delete-buffer lsb list-buffers loadb load-buffer
+syn keyword tmuxBufferCmds pasteb paste-buffer saveb save-buffer setb set-buffer
+syn keyword tmuxBufferCmds showb show-buffer
+
+syn keyword tmuxMiscCmds clock-mode if[-shell] lock[-server] wait[-for]
+" obsolete (not in manpage anymore)
+syn keyword tmuxMiscCmds info server-info
 
 syn keyword tmuxOptsSet prefix prefix2 status status-fg status-bg bell-action
 syn keyword tmuxOptsSet default-command history-limit status-left status-right
@@ -79,6 +85,7 @@ syn keyword tmuxOptsSet destroy-unattached exit-unattached set-clipboard
 syn keyword tmuxOptsSet bell-on-alert mouse-select-window mouse-utf8
 syn keyword tmuxOptsSet mouse-resize-pane
 syn keyword tmuxOptsSet renumber-windows visual-silence
+syn keyword tmuxOptsSet show[-options] showw show-window-options
 
 syn match tmuxUserOptsSet /@[[:alnum:]_-]\+/ display
 
@@ -100,11 +107,6 @@ syn keyword tmuxOptsSetw window-status-content-bg window-status-content-fg
 syn keyword tmuxOptsSetw pane-base-index other-pane-height other-pane-width
 syn keyword tmuxOptsSetw allow-rename c0-change-interval c0-change-trigger
 syn keyword tmuxOptsSetw layout-history-limit monitor-silence utf8 wrap-search
-
-" concatenating flag '-t' and table name is a valid syntax
-syn keyword tmuxKeyTable vi-edit emacs-edit vi-choice emacs-choice vi-copy
-syn keyword tmuxKeyTable emacs-copy -tvi-edit -temacs-edit -tvi-choice
-syn keyword tmuxKeyTable -temacs-choice -tvi-copy -temacs-copy
 
 " keywords for vi/emacs edit, choice and copy modes
 syn keyword tmuxModeCmds append-selection back-to-indentation backspace
@@ -128,9 +130,27 @@ syn keyword tmuxModeCmds switch-mode-substitute-line top-line transpose-chars
 syn keyword tmuxModeCmds tree-collapse tree-collapse-all tree-expand
 syn keyword tmuxModeCmds tree-expand-all tree-toggle up
 
-" run-shell is special when at the beginning of the line
-syn match tmuxCmds            /run\(-shell\)\?/ display
+" These keys can be used for the 'bind' command
+syn keyword tmuxKeySymbol Enter Escape Space BSpace Home End Tab BTab DC IC
+syn keyword tmuxKeySymbol F1 F2 F3 F4 F5 F6 F7 F8 F9 F10 F11 F12
+syn keyword tmuxKeySymbol NPage PageDown PgDn PPage PageUp PgUp
+syn keyword tmuxKeySymbol Up Down Left Right
+
+" these commands are special when at the beginning of the line
+syn match tmuxMiscCmds        /run\(-shell\)\?/ display
 syn match tmuxSpecialCmds /^\s*run\(-shell\)\?/ display
+
+syn match tmuxBindingCmds     /bind\(-key\)\?/ display
+syn match tmuxSpecialCmds /^\s*bind\(-key\)\?/ display
+
+syn match tmuxBindingCmds     /unbind\(-key\)\?/ display
+syn match tmuxSpecialCmds /^\s*unbind\(-key\)\?/ display
+
+syn match tmuxOptsSet         /set\(-option\)\?/ display
+syn match tmuxSpecialCmds /^\s*set\(-option\)\?/ display
+
+syn match tmuxOptsSetw        /\(setw\|set-window-option\)/ display
+syn match tmuxSpecialCmds /^\s*\(setw\|set-window-option\)/ display
 
 syn region tmuxComment start=/#/ end=/$/ contains=tmuxTodo,tmuxURL display oneline
 
@@ -145,11 +165,8 @@ syn match tmuxVariable          /\w\+=/                 display
 syn match tmuxVariableExpansion /\${\=\w\+}\=/          display
 syn match tmuxAdditionalCommand /\\;/ display
 
-" These keys can be used for the 'bind' command
-syn keyword tmuxKeySymbol Enter Escape Space BSpace Home End Tab BTab DC IC
-syn keyword tmuxKeySymbol F1 F2 F3 F4 F5 F6 F7 F8 F9 F10 F11 F12
-syn keyword tmuxKeySymbol NPage PageDown PgDn PPage PageUp PgUp
-syn keyword tmuxKeySymbol Up Down Left Right
+" concatenating flag '-t' and table name is a valid syntax
+syn match tmuxKeyTable /\s\(-t\)\?\(vi-edit\|emacs-edit\|vi-choice\|emacs-choice\|vi-copy\|emacs-copy\)/ display
 
 syn match tmuxColor /\(bright\)\?\(black\|red\|green\|yellow\|blue\|magenta\|cyan\|white\)/ display
 syn match tmuxColor /default/        display
@@ -190,7 +207,15 @@ syn region tmuxString matchgroup=tmuxStringDelimiter start=/'/ end=/'/          
 hi def link tmuxAction              Boolean
 hi def link tmuxBoolean             Boolean
 hi def link tmuxOptionValue         Constant
-hi def link tmuxCmds                Keyword
+
+hi def link tmuxClientSessionCmds   Keyword
+hi def link tmuxWindowPaneCmds      Keyword
+hi def link tmuxBindingCmds         Keyword
+hi def link tmuxEnvironmentCmds     Keyword
+hi def link tmuxStatusLineCmds      Keyword
+hi def link tmuxBufferCmds          Keyword
+hi def link tmuxMiscCmds            Keyword
+
 hi def link tmuxSpecialCmds         Type
 hi def link tmuxComment             Comment
 hi def link tmuxKey                 Special

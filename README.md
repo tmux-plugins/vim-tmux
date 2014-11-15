@@ -4,15 +4,15 @@ Vim filetype plugin for `.tmux.conf`.
 
 ### Features
 
-Pretty much standard filetype plugin features:
+When you edit `.tmux.conf` you get:
 
-* proper syntax highlighting for `.tmux.conf`
-* `commentstring`<br/>
-  So that plugins like [vim-commentary](https://github.com/tpope/vim-commentary)
-  work as intended.
-* `makeprg`<br/>
-  `:make` will invoke tmux source `.tmux.conf` and place all the errors
-  (if any) in quicklist.
+* proper syntax highlighting
+* `commentstring` - so that plugins like
+  [vim-commentary](https://github.com/tpope/vim-commentary) work as intended
+* `K` - jump to the \*exact* place in `man tmux` where the word under cursor is
+  explained. It's a time saver and intends to works for pretty much everything.
+* [:make](http://vimdoc.sourceforge.net/htmldoc/quickfix.html#:make) - invokes
+  tmux source `.tmux.conf` and places all the errors (if any) in quicklist
 
 ### Installation
 

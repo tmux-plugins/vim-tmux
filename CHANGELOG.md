@@ -1,5 +1,9 @@
 # Changelog
 
+### master
+- `K` mapping now uses `:Man tmux` and jumps to the exact section in the
+  manpage.
+
 ### v2.1.0, 2014-11-14
 - makeprg and errorformat
 - improve the readme
