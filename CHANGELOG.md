@@ -3,6 +3,7 @@
 ### master
 - `K` mapping now uses `:Man tmux` and jumps to the exact section in the
   manpage.
+- improve `K` mapping for use with older tmux versions
 
 ### v2.1.0, 2014-11-14
 - makeprg and errorformat
