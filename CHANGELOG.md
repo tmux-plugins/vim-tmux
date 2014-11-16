@@ -2,6 +2,7 @@
 
 ### master
 - add `g!`
+- write docs
 
 ### v2.2.0, 2014-11-16
 - `K` mapping now uses `:Man tmux` and jumps to the exact section in the
