@@ -153,6 +153,7 @@ let s:highlight_group_to_match_mapping = {
       \ 'tmuxUserOptsSet':         ['OPTIONS', '.', ''],
       \ 'tmuxKeySymbol':           ['KEY BINDINGS', '^KEY BINDINGS', ''],
       \ 'tmuxKey':                 ['KEY BINDINGS', '^KEY BINDINGS', ''],
+      \ 'tmuxAdditionalCommand':   ['COMMANDS', '^\s\+\zsMultiple commands may be specified together', ''],
       \ 'tmuxColor':               ['OPTIONS', '^\s\+\zsmessage-command-style', ''],
       \ 'tmuxStyle':               ['OPTIONS', '^\s\+\zsmessage-command-style', ''],
       \ 'tmuxPromptInpol':         ['STATUS LINE', '^\s\+\zscommand-prompt', ''],
