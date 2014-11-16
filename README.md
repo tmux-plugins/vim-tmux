@@ -10,7 +10,7 @@ When you edit `.tmux.conf` you get:
 * `commentstring` - so that plugins like
   [vim-commentary](https://github.com/tpope/vim-commentary) work as intended
 * `K` - jump to the \*exact* place in `man tmux` where the word under cursor is
-  explained. It's a time saver and intends to works for pretty much everything.
+  explained (this is a helluva time saver).
 * [:make](http://vimdoc.sourceforge.net/htmldoc/quickfix.html#:make) - invokes
   tmux source `.tmux.conf` and places all the errors (if any) in quicklist
 

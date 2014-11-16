@@ -150,7 +150,7 @@ endfunction
 let s:highlight_group_to_match_mapping = {
       \ 'tmuxKeyTable':            ['KEY BINDINGS', '^\s\+\zslist-keys', ''],
       \ 'tmuxLayoutOptionValue':   ['WINDOWS AND PANES', '^\s\+\zs{}', '^\s\+\zsThe following layouts are supported'],
-      \ 'tmuxUserOptsSet':         ['OPTIONS', '^\s\+\zstmux also supports user options', '@'],
+      \ 'tmuxUserOptsSet':         ['OPTIONS', '.', ''],
       \ 'tmuxKeySymbol':           ['KEY BINDINGS', '^KEY BINDINGS', ''],
       \ 'tmuxKey':                 ['KEY BINDINGS', '^KEY BINDINGS', ''],
       \ 'tmuxColor':               ['OPTIONS', '^\s\+\zsmessage-command-style', ''],
@@ -187,6 +187,23 @@ function! s:highlight_group_based_jump(highlight_group, keyword)
     echohl ErrorMsg | echo "Sorry, couldn't find the exact description" | echohl None
   end
 endfunction
+" just open manpage {{{1
+function! s:just_open_manpage(highlight_group)
+  let hg = a:highlight_group
+  let char_under_cursor = getline('.')[col('.')-1]
+  if hg ==# '' ||
+   \ hg ==# 'tmuxStringDelimiter' ||
+   \ hg ==# 'tmuxOptions' ||
+   \ hg ==# 'tmuxAction' ||
+   \ hg ==# 'tmuxBoolean' ||
+   \ hg ==# 'tmuxOptionValue' ||
+   \ hg ==# 'tmuxNumber' ||
+   \ char_under_cursor =~# '\s'
+    return 1
+  else
+    return 0
+  endif
+endfunction
 
 " 'public' function {{{1
 function! tmux#man(...)
@@ -196,7 +213,9 @@ function! tmux#man(...)
   let keyword = expand("<cword>")
 
   let highlight_group = synIDattr(synID(line("."), col("."), 1), "name")
-  if has_key(s:highlight_group_to_match_mapping, highlight_group)
+  if s:just_open_manpage(highlight_group)
+    silent exec "norm! :Man tmux\<CR>"
+  elseif has_key(s:highlight_group_to_match_mapping, highlight_group)
     return s:highlight_group_based_jump(highlight_group, keyword)
   else
     return s:keyword_based_jump(highlight_group, keyword)
