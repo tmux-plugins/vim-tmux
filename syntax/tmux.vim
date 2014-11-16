@@ -20,9 +20,9 @@ syn keyword tmuxBoolean off on
 syn keyword tmuxOptionValue top bottom left right top-left top-right
 syn keyword tmuxOptionValue bottom-left bottom-right centre
 syn keyword tmuxOptionValue vi emacs copy
-syn keyword tmuxOptionValue even-horizontal even-vertical main-horizontal
-syn keyword tmuxOptionValue main-vertical tiled
 syn keyword tmuxOptionValue bash zsh fish
+syn keyword tmuxLayoutOptionValue even-horizontal even-vertical main-horizontal
+syn keyword tmuxLayoutOptionValue main-vertical tiled
 
 syn keyword tmuxClientSessionCmds attach[-session] detach[-client] has[-session]
 syn keyword tmuxClientSessionCmds kill-server kill-session lsc list-clients lscm
@@ -187,19 +187,19 @@ syn match tmuxDateInpol /%[0_^#-]\?O[BdeHImMSuUVwWy]/ contained
 syn match tmuxFmtAlias /#[HhDPTSFIW#]/ contained
 
 " Format interpolation
-syn region tmuxFmtInpol matchgroup=tmuxInpolDelimiter start=/#{/ skip=/#{.\{-}}/ end=/}/ contained keepend contains=tmuxFmtVariable,tmuxFmtConditional,tmuxFmtLimit
+syn region tmuxFmtInpol matchgroup=tmuxFmtInpolDelimiter start=/#{/ skip=/#{.\{-}}/ end=/}/ contained keepend contains=tmuxFmtVariable,tmuxFmtConditional,tmuxFmtLimit
 syn match  tmuxFmtVariable    /[[:alnum:]_-]\+/ contained display
 syn match  tmuxFmtConditional /[?,]/            contained display
 syn match  tmuxFmtLimit       /=.\{-}:/         contained display contains=tmuxNumber
 
 " Attribute interpolation
-syn region tmuxAttrInpol matchgroup=tmuxInpolDelimiter start=/#\[/ skip=/#\[.\{-}]/ end=/]/ contained keepend contains=tmuxColor,tmuxAttrBgFg,tmuxAttrEquals,tmuxAttrSeparator,tmuxStyle
+syn region tmuxAttrInpol matchgroup=tmuxAttrInpolDelimiter start=/#\[/ skip=/#\[.\{-}]/ end=/]/ contained keepend contains=tmuxColor,tmuxAttrBgFg,tmuxAttrEquals,tmuxAttrSeparator,tmuxStyle
 syn match  tmuxAttrBgFg      /[fb]g/ contained display
 syn match  tmuxAttrEquals    /=/     contained display
 syn match  tmuxAttrSeparator /,/     contained display
 
 " Shell command interpolation
-syn region tmuxShellInpol matchgroup=tmuxInpolDelimiter start=/#(/ skip=/#(.\{-})/ end=/)/ contained keepend
+syn region tmuxShellInpol matchgroup=tmuxShellInpolDelimiter start=/#(/ skip=/#(.\{-})/ end=/)/ contained keepend
 
 syn region tmuxString matchgroup=tmuxStringDelimiter start=/"/ skip=/\\./ end=/"/ contains=tmuxFmtInpol,tmuxFmtAlias,tmuxAttrInpol,tmuxShellInpol,tmuxPromptInpol,tmuxDateInpol display keepend
 syn region tmuxString matchgroup=tmuxStringDelimiter start=/'/ end=/'/            contains=tmuxFmtInpol,tmuxFmtAlias,tmuxAttrInpol,tmuxShellInpol,tmuxPromptInpol,tmuxDateInpol display keepend
@@ -207,6 +207,7 @@ syn region tmuxString matchgroup=tmuxStringDelimiter start=/'/ end=/'/          
 hi def link tmuxAction              Boolean
 hi def link tmuxBoolean             Boolean
 hi def link tmuxOptionValue         Constant
+hi def link tmuxLayoutOptionValue   Constant
 
 hi def link tmuxClientSessionCmds   Keyword
 hi def link tmuxWindowPaneCmds      Keyword
@@ -243,7 +244,9 @@ hi def link tmuxAttrBgFg            Constant
 hi def link tmuxAttrEquals          Operator
 hi def link tmuxAttrSeparator       Operator
 hi def link tmuxShellInpol          String
-hi def link tmuxInpolDelimiter      Delimiter
+hi def link tmuxFmtInpolDelimiter   Delimiter
+hi def link tmuxAttrInpolDelimiter  Delimiter
+hi def link tmuxShellInpolDelimiter Delimiter
 
 hi def link tmuxTodo                Todo
 hi def link tmuxURL                 Underlined

@@ -1,5 +1,8 @@
+" keyword based jump dictionary maps {{{1
 " Mapping short keywords to their longer version so they can be found
 " in man page with 'K'
+" '\[' at the end of the keyword ensures the match jumps to the correct
+" place in tmux manpage where the option/command is described.
 let s:keyword_mappings = {
       \ 'attach':              'attach-session',
       \ 'bind':                'bind-key \[',
@@ -98,9 +101,10 @@ let s:highlight_group_manpage_section = {
       \ 'tmuxEnvironmentCmds':   'ENVIRONMENT',
       \ 'tmuxStatusLineCmds':    'STATUS LINE',
       \ 'tmuxBufferCmds':        'BUFFERS',
-      \ 'tmuxMiscCmds':          'MISCELLANEOUS',
+      \ 'tmuxMiscCmds':          'MISCELLANEOUS'
       \ }
 
+" keyword based jump {{{1
 function! s:get_search_keyword(keyword)
   if has_key(s:keyword_mappings, a:keyword)
     return s:keyword_mappings[a:keyword]
@@ -110,36 +114,91 @@ function! s:get_search_keyword(keyword)
 endfunction
 
 function! s:man_tmux_search(section, regex)
+  let wrapscan_save = &wrapscan
+  set nowrapscan
   try
     exec 'norm! :/^'.a:section.'/ /'.a:regex."\<CR>"
+    let &wrapscan = wrapscan_save
     return 1
   catch
+    let &wrapscan = wrapscan_save
     return 0
   endtry
 endfunction
 
-function! tmux#man(...)
-  if !exists(":Man")
-    runtime! ftplugin/man.vim
-  endif
-  let keyword = expand("<cword>")
-  let search_keyword = s:get_search_keyword(keyword)
-
-  let highlight_group = synIDattr(synID(line("."), col("."), 1), "name")
-  if has_key(s:highlight_group_manpage_section, highlight_group)
-    let section = s:highlight_group_manpage_section[highlight_group]
+function! s:keyword_based_jump(highlight_group, keyword)
+  if has_key(s:highlight_group_manpage_section, a:highlight_group)
+    let section = s:highlight_group_manpage_section[a:highlight_group]
   else
     let section = ''
   endif
+  let search_keyword = s:get_search_keyword(a:keyword)
 
   silent exec "norm! :Man tmux\<CR>"
 
   if s:man_tmux_search(section, '^\s\+\zs'.search_keyword) ||
      \ s:man_tmux_search(section, search_keyword) ||
-     \ s:man_tmux_search('', keyword)
+     \ s:man_tmux_search('', a:keyword)
     norm! zt
   else
     redraw
-    echohl ErrorMsg | echo "Sorry, couldn't find ".keyword | echohl None
+    echohl ErrorMsg | echo "Sorry, couldn't find ".a:keyword | echohl None
   end
+endfunction
+
+" highlight group based jump {{{1
+let s:highlight_group_to_match_mapping = {
+      \ 'tmuxKeyTable':            ['KEY BINDINGS', '^\s\+\zslist-keys', ''],
+      \ 'tmuxLayoutOptionValue':   ['WINDOWS AND PANES', '^\s\+\zs{}', '^\s\+\zsThe following layouts are supported'],
+      \ 'tmuxUserOptsSet':         ['OPTIONS', '^\s\+\zstmux also supports user options', '@'],
+      \ 'tmuxKeySymbol':           ['KEY BINDINGS', '^KEY BINDINGS', ''],
+      \ 'tmuxKey':                 ['KEY BINDINGS', '^KEY BINDINGS', ''],
+      \ 'tmuxColor':               ['OPTIONS', '^\s\+\zsmessage-command-style', ''],
+      \ 'tmuxStyle':               ['OPTIONS', '^\s\+\zsmessage-command-style', ''],
+      \ 'tmuxPromptInpol':         ['STATUS LINE', '^\s\+\zscommand-prompt', ''],
+      \ 'tmuxFmtInpol':            ['FORMATS', '.', ''],
+      \ 'tmuxFmtInpolDelimiter':   ['FORMATS', '.', ''],
+      \ 'tmuxFmtAlias':            ['FORMATS', '.', ''],
+      \ 'tmuxFmtVariable':         ['FORMATS', '^\s\+\zs{}', 'The following variables are available'],
+      \ 'tmuxFmtConditional':      ['FORMATS', '.', ''],
+      \ 'tmuxFmtLimit':            ['FORMATS', '.', ''],
+      \ 'tmuxDateInpol':           ['OPTIONS', '^\s\+\zsstatus-left', ''],
+      \ 'tmuxAttrInpol':           ['OPTIONS', '^\s\+\zsstatus-left', ''],
+      \ 'tmuxAttrInpolDelimiter':  ['OPTIONS', '^\s\+\zsstatus-left', ''],
+      \ 'tmuxAttrBgFg':            ['OPTIONS', '^\s\+\zsmessage-command-style', ''],
+      \ 'tmuxAttrEquals':          ['OPTIONS', '^\s\+\zsmessage-command-style', ''],
+      \ 'tmuxAttrSeparator':       ['OPTIONS', '^\s\+\zsmessage-command-style', ''],
+      \ 'tmuxShellInpol':          ['OPTIONS', '^\s\+\zsstatus-left', ''],
+      \ 'tmuxShellInpolDelimiter': ['OPTIONS', '^\s\+\zsstatus-left', '']
+      \ }
+
+function! s:highlight_group_based_jump(highlight_group, keyword)
+  silent exec "norm! :Man tmux\<CR>"
+  let section = s:highlight_group_to_match_mapping[a:highlight_group][0]
+  let search_string = s:highlight_group_to_match_mapping[a:highlight_group][1]
+  let fallback_string = s:highlight_group_to_match_mapping[a:highlight_group][2]
+
+  let search_keyword = substitute(search_string, '{}', a:keyword, "")
+  if s:man_tmux_search(section, search_keyword) ||
+        \ s:man_tmux_search(section, fallback_string)
+    norm! zt
+  else
+    redraw
+    echohl ErrorMsg | echo "Sorry, couldn't find the exact description" | echohl None
+  end
+endfunction
+
+" 'public' function {{{1
+function! tmux#man(...)
+  if !exists(":Man")
+    runtime! ftplugin/man.vim
+  endif
+  let keyword = expand("<cword>")
+
+  let highlight_group = synIDattr(synID(line("."), col("."), 1), "name")
+  if has_key(s:highlight_group_to_match_mapping, highlight_group)
+    return s:highlight_group_based_jump(highlight_group, keyword)
+  else
+    return s:keyword_based_jump(highlight_group, keyword)
+  endif
 endfunction
