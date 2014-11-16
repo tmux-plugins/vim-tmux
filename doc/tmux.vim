@@ -37,6 +37,8 @@ Contributing and bug reports are welcome. Github repo:
 
 CHANGELOG					*tmux-changelog*
 
+	v3.0.0:	November 16, 2014	* minor indentation rule for
+					  multi-line strings
 	v2.3.0:	November 16, 2014	* add |tmux-g!|, write the docs
 	v2.2.0:	November 16, 2014	* much improved |tmux-K| mapping
 	v2.1.0:	November 14, 2014	* 'makeprg', 'errorformat'

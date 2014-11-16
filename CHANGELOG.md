@@ -1,6 +1,8 @@
 # Changelog
 
 ### master
+
+### v3.0.0, 2014-11-16
 - add a minor indentation rule for multi-line strings.
 
 ### v2.3.0, 2014-11-16
