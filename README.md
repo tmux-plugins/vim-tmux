@@ -10,9 +10,12 @@ When you edit `.tmux.conf` you get:
 * `commentstring` - so that plugins like
   [vim-commentary](https://github.com/tpope/vim-commentary) work as intended
 * `K` - jumps to the \*exact* place in `man tmux` where the word under cursor is
-  explained (a helluva time saver).
+  explained (a helluva time saver). This should work correctly on practically
+  anything in `.tmux.conf`.
 * [:make](http://vimdoc.sourceforge.net/htmldoc/quickfix.html#:make) - invokes
   tmux source `.tmux.conf` and places all the errors (if any) in quicklist
+* `g!` - executes lines as tmux commands. Works on visual selection or as a
+  motion. `g!!` executes just the current line.
 
 ### Installation
 

@@ -1,4 +1,6 @@
-" keyword based jump dictionary maps {{{1
+" K {{{1
+" keyword based jump dictionary maps {{{2
+
 " Mapping short keywords to their longer version so they can be found
 " in man page with 'K'
 " '\[' at the end of the keyword ensures the match jumps to the correct
@@ -105,7 +107,8 @@ let s:highlight_group_manpage_section = {
       \ 'tmuxMiscCmds':          'MISCELLANEOUS'
       \ }
 
-" keyword based jump {{{1
+" keyword based jump {{{2
+
 function! s:get_search_keyword(keyword)
   if has_key(s:keyword_mappings, a:keyword)
     return s:keyword_mappings[a:keyword]
@@ -147,7 +150,8 @@ function! s:keyword_based_jump(highlight_group, keyword)
   end
 endfunction
 
-" highlight group based jump {{{1
+" highlight group based jump {{{2
+
 let s:highlight_group_to_match_mapping = {
       \ 'tmuxKeyTable':            ['KEY BINDINGS', '^\s\+\zslist-keys', ''],
       \ 'tmuxLayoutOptionValue':   ['WINDOWS AND PANES', '^\s\+\zs{}', '^\s\+\zsThe following layouts are supported'],
@@ -189,7 +193,8 @@ function! s:highlight_group_based_jump(highlight_group, keyword)
     echohl ErrorMsg | echo "Sorry, couldn't find the exact description" | echohl None
   end
 endfunction
-" just open manpage {{{1
+" just open manpage {{{2
+
 function! s:just_open_manpage(highlight_group)
   let hg = a:highlight_group
   let char_under_cursor = getline('.')[col('.')-1]
@@ -207,7 +212,8 @@ function! s:just_open_manpage(highlight_group)
   endif
 endfunction
 
-" 'public' function {{{1
+" 'public' function {{{2
+
 function! tmux#man(...)
   if !exists(":Man")
     runtime! ftplugin/man.vim
@@ -222,4 +228,88 @@ function! tmux#man(...)
   else
     return s:keyword_based_jump(highlight_group, keyword)
   endif
+endfunction
+
+" g! {{{1
+" g! is inspired and in good part copied from https://github.com/tpope/vim-scriptease
+
+function! s:opfunc(type) abort
+  let sel_save = &selection
+  let cb_save = &clipboard
+  let reg_save = @@
+  try
+    set selection=inclusive clipboard-=unnamed clipboard-=unnamedplus
+    if a:type =~ '^\d\+$'
+      silent exe 'normal! ^v'.a:type.'$hy'
+    elseif a:type =~# '^.$'
+      silent exe "normal! `<" . a:type . "`>y"
+    elseif a:type ==# 'line'
+      silent exe "normal! '[V']y"
+    elseif a:type ==# 'block'
+      silent exe "normal! `[\<C-V>`]y"
+    else
+      silent exe "normal! `[v`]y"
+    endif
+    redraw
+    return @@
+  finally
+    let @@ = reg_save
+    let &selection = sel_save
+    let &clipboard = cb_save
+  endtry
+endfunction
+
+function! tmux#filterop(type) abort
+  let reg_save = @@
+  try
+    let expr = s:opfunc(a:type)
+    let lines = split(expr, "\n")
+    let all_output = ""
+    let index = 0
+    while index < len(lines)
+      let line = lines[index]
+
+      " if line is a part of multi-line string (those have '\' at the end)
+      " and not last line, perform " concatenation
+      while line =~# '\\\s*$' && index !=# len(lines)-1
+        let index += 1
+        " remove '\' from line end
+        let line = substitute(line, '\\\s*$', '', '')
+        " append next line
+        let line .= lines[index]
+      endwhile
+
+      " skip empty line and comments
+      if line =~# '^\s*#' ||
+       \ line =~# '^\s*$'
+        continue
+      endif
+
+      let command = "tmux ".line
+      if all_output =~# '\S'
+        let all_output .= "\n".command
+      else  " empty var, do not include newline first
+        let all_output = command
+      endif
+
+      let output = system(command)
+      if v:shell_error
+        throw output
+      elseif output =~# '\S'
+        let all_output .= "\n> ".output[0:-2]
+      endif
+
+      let index += 1
+    endwhile
+
+    if all_output =~# '\S'
+      redraw
+      echo all_output
+    endif
+  catch /^.*/
+    redraw
+    echo all_output | echohl ErrorMSG | echo v:exception | echohl NONE
+  finally
+    let @@ = reg_save
+  endtry
 endfunction
