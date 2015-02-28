@@ -81,7 +81,7 @@ syn keyword tmuxOptsSet pane-active-border-bg pane-active-border-fg
 syn keyword tmuxOptsSet pane-border-bg pane-border-fg message-command-fg message-fg
 syn keyword tmuxOptsSet display-panes-active-colour alternate-screen
 syn keyword tmuxOptsSet detach-on-destroy word-separators
-syn keyword tmuxOptsSet destroy-unattached exit-unattached set-clipboard
+syn keyword tmuxOptsSet destroy-unattached exit-unattached focus-events set-clipboard
 syn keyword tmuxOptsSet bell-on-alert mouse-select-window mouse-utf8
 syn keyword tmuxOptsSet mouse-resize-pane
 syn keyword tmuxOptsSet renumber-windows visual-silence
