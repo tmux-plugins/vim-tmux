@@ -28,8 +28,8 @@ When you edit `.tmux.conf` you get:
 ### Credits
 
 * Tiago Cunha - created first syntax highlighting script for `.tmux.conf`
-* [Zaiste](https://github.com/zaiste) - wrapped syntax highlihting script in vim
-  plugin
+* [Zaiste](https://github.com/zaiste) - wrapped syntax highlighting script in
+  vim plugin
 
 ### License
 
