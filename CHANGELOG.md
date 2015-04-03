@@ -2,6 +2,7 @@
 
 ### master
 - do not remap `K` if normal mode mapping is already defined
+- update compiler file
 
 ### v3.0.0, 2014-11-16
 - add a minor indentation rule for multi-line strings.

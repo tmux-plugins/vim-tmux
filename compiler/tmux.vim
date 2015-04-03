@@ -10,7 +10,7 @@ endif
 let s:cpo_save = &cpo
 set cpo-=C
 
-CompilerSet makeprg=tmux\ source-file\ %
+CompilerSet makeprg=tmux\ source-file\ %:p
 
 CompilerSet errorformat=
     \%f:%l:%m,
