@@ -64,13 +64,12 @@ syn keyword tmuxMiscCmds clock-mode if[-shell] lock[-server] wait[-for]
 syn keyword tmuxMiscCmds info server-info
 
 syn keyword tmuxOptsSet
-    \ alternate-screen
+    \ assume-paste-time
     \ base-index
     \ bell-action
     \ bell-on-alert
     \ buffer-limit
     \ default-command
-    \ default-path
     \ default-shell
     \ default-terminal
     \ destroy-unattached
@@ -82,25 +81,18 @@ syn keyword tmuxOptsSet
     \ escape-time
     \ exit-unattached
     \ focus-events
+    \ history-file
     \ history-limit
     \ lock-after-time
     \ lock-command
     \ lock-server
-    \ message-attr
-    \ message-bg
-    \ message-command-attr
-    \ message-command-bg
-    \ message-command-fg
-    \ message-fg
+    \ message-command-style
     \ message-limit
-    \ mouse-resize-pane
-    \ mouse-select-pane
-    \ mouse-select-window
+    \ message-style
+    \ mouse
     \ mouse-utf8
-    \ pane-active-border-bg
-    \ pane-active-border-fg
-    \ pane-border-bg
-    \ pane-border-fg
+    \ pane-active-border-style
+    \ pane-border-style
     \ prefix
     \ prefix2
     \ quiet
@@ -110,33 +102,22 @@ syn keyword tmuxOptsSet
     \ set-remain-on-exit
     \ set-titles
     \ set-titles-string
-    \ show-window-options
-    \ show[-options]
-    \ showw
     \ status
-    \ status-attr
-    \ status-bg
-    \ status-fg
     \ status-interval
     \ status-justify
     \ status-keys
     \ status-left
-    \ status-left-attr
-    \ status-left-bg
-    \ status-left-fg
     \ status-left-length
+    \ status-left-style
     \ status-position
     \ status-right
-    \ status-right-attr
-    \ status-right-bg
-    \ status-right-fg
     \ status-right-length
     \ status-utf8
+    \ staus-right-style
     \ terminal-overrides
     \ update-environment
     \ visual-activity
     \ visual-bell
-    \ visual-content
     \ visual-silence
     \ word-separators
 
@@ -145,23 +126,17 @@ syn match tmuxUserOptsSet /@[[:alnum:]_-]\+/ display
 syn keyword tmuxOptsSetw
     \ aggressive-resize
     \ allow-rename
+    \ alternate-screen
     \ automatic-rename
-    \ c0-change-interval
-    \ c0-change-trigger
     \ clock-mode-colour
     \ clock-mode-style
     \ force-height
     \ force-width
-    \ layout-history-limit
     \ main-pane-height
     \ main-pane-width
-    \ mode-attr
-    \ mode-bg
-    \ mode-fg
     \ mode-keys
-    \ mode-mouse
+    \ mode-style
     \ monitor-activity
-    \ monitor-content
     \ monitor-silence
     \ other-pane-height
     \ other-pane-width
@@ -169,27 +144,16 @@ syn keyword tmuxOptsSetw
     \ remain-on-exit
     \ synchronize-panes
     \ utf8
-    \ window-status-activity-attr
-    \ window-status-activity-bg
-    \ window-status-activity-fg
-    \ window-status-attr
-    \ window-status-bell-attr
-    \ window-status-bell-bg
-    \ window-status-bell-fg
-    \ window-status-bg
-    \ window-status-content-attr
-    \ window-status-content-bg
-    \ window-status-content-fg
-    \ window-status-current-attr
-    \ window-status-current-bg
-    \ window-status-current-fg
+    \ window-active-style
+    \ window-status-activity-style
+    \ window-status-bell-style
     \ window-status-current-format
-    \ window-status-fg
+    \ window-status-current-style
     \ window-status-format
-    \ window-status-last-attr
-    \ window-status-last-bg
-    \ window-status-last-fg
+    \ window-status-last-style
     \ window-status-separator
+    \ window-status-style
+    \ window-style
     \ wrap-search
     \ xterm-keys
 
