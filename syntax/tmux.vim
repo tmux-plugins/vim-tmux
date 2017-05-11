@@ -63,52 +63,99 @@ syn keyword tmuxMiscCmds clock-mode if[-shell] lock[-server] wait[-for]
 " obsolete (not in manpage anymore)
 syn keyword tmuxMiscCmds info server-info
 
-syn keyword tmuxOptsSet prefix prefix2 status status-fg status-bg bell-action
-syn keyword tmuxOptsSet default-command history-limit status-left status-right
-syn keyword tmuxOptsSet status-interval set-titles display-time buffer-limit
-syn keyword tmuxOptsSet status-left-length status-right-length status-position
-syn keyword tmuxOptsSet message-command-bg message-bg lock-after-time default-path
-syn keyword tmuxOptsSet message-command-attr message-attr status-attr set-remain-on-exit
-syn keyword tmuxOptsSet status-utf8 default-terminal visual-activity repeat-time
-syn keyword tmuxOptsSet visual-bell visual-content status-justify status-keys
-syn keyword tmuxOptsSet terminal-overrides status-left-attr status-left-bg
-syn keyword tmuxOptsSet status-left-fg status-right-attr status-right-bg
-syn keyword tmuxOptsSet status-right-fg update-environment base-index
-syn keyword tmuxOptsSet display-panes-colour display-panes-time default-shell
-syn keyword tmuxOptsSet set-titles-string lock-command lock-server
-syn keyword tmuxOptsSet mouse-select-pane message-limit quiet escape-time
-syn keyword tmuxOptsSet pane-active-border-bg pane-active-border-fg
-syn keyword tmuxOptsSet pane-border-bg pane-border-fg message-command-fg message-fg
-syn keyword tmuxOptsSet display-panes-active-colour alternate-screen
-syn keyword tmuxOptsSet detach-on-destroy word-separators
-syn keyword tmuxOptsSet destroy-unattached exit-unattached focus-events set-clipboard
-syn keyword tmuxOptsSet bell-on-alert mouse-select-window mouse-utf8
-syn keyword tmuxOptsSet mouse-resize-pane
-syn keyword tmuxOptsSet renumber-windows visual-silence
-syn keyword tmuxOptsSet show[-options] showw show-window-options
+syn keyword tmuxOptsSet
+    \ assume-paste-time
+    \ base-index
+    \ bell-action
+    \ bell-on-alert
+    \ buffer-limit
+    \ default-command
+    \ default-shell
+    \ default-terminal
+    \ destroy-unattached
+    \ detach-on-destroy
+    \ display-panes-active-colour
+    \ display-panes-colour
+    \ display-panes-time
+    \ display-time
+    \ escape-time
+    \ exit-unattached
+    \ focus-events
+    \ history-file
+    \ history-limit
+    \ lock-after-time
+    \ lock-command
+    \ lock-server
+    \ message-command-style
+    \ message-limit
+    \ message-style
+    \ mouse
+    \ mouse-utf8
+    \ pane-active-border-style
+    \ pane-border-style
+    \ prefix
+    \ prefix2
+    \ quiet
+    \ renumber-windows
+    \ repeat-time
+    \ set-clipboard
+    \ set-remain-on-exit
+    \ set-titles
+    \ set-titles-string
+    \ status
+    \ status-interval
+    \ status-justify
+    \ status-keys
+    \ status-left
+    \ status-left-length
+    \ status-left-style
+    \ status-position
+    \ status-right
+    \ status-right-length
+    \ status-utf8
+    \ staus-right-style
+    \ terminal-overrides
+    \ update-environment
+    \ visual-activity
+    \ visual-bell
+    \ visual-silence
+    \ word-separators
 
 syn match tmuxUserOptsSet /@[[:alnum:]_-]\+/ display
 
-syn keyword tmuxOptsSetw monitor-activity aggressive-resize force-width
-syn keyword tmuxOptsSetw force-height remain-on-exit mode-fg mode-bg
-syn keyword tmuxOptsSetw mode-keys clock-mode-colour clock-mode-style
-syn keyword tmuxOptsSetw xterm-keys mode-attr window-status-attr
-syn keyword tmuxOptsSetw window-status-bg window-status-fg automatic-rename
-syn keyword tmuxOptsSetw main-pane-width main-pane-height monitor-content
-syn keyword tmuxOptsSetw window-status-current-attr window-status-current-bg
-syn keyword tmuxOptsSetw window-status-current-fg mode-mouse synchronize-panes
-syn keyword tmuxOptsSetw window-status-format window-status-current-format
-syn keyword tmuxOptsSetw window-status-activity-attr
-syn keyword tmuxOptsSetw window-status-activity-bg window-status-activity-fg
-syn keyword tmuxOptsSetw window-status-bell-attr
-syn keyword tmuxOptsSetw window-status-bell-bg window-status-bell-fg
-syn keyword tmuxOptsSetw window-status-content-attr
-syn keyword tmuxOptsSetw window-status-content-bg window-status-content-fg
-syn keyword tmuxOptsSetw window-status-separator window-status-last-attr
-syn keyword tmuxOptsSetw window-status-last-fg window-status-last-bg
-syn keyword tmuxOptsSetw pane-base-index other-pane-height other-pane-width
-syn keyword tmuxOptsSetw allow-rename c0-change-interval c0-change-trigger
-syn keyword tmuxOptsSetw layout-history-limit monitor-silence utf8 wrap-search
+syn keyword tmuxOptsSetw
+    \ aggressive-resize
+    \ allow-rename
+    \ alternate-screen
+    \ automatic-rename
+    \ clock-mode-colour
+    \ clock-mode-style
+    \ force-height
+    \ force-width
+    \ main-pane-height
+    \ main-pane-width
+    \ mode-keys
+    \ mode-style
+    \ monitor-activity
+    \ monitor-silence
+    \ other-pane-height
+    \ other-pane-width
+    \ pane-base-index
+    \ remain-on-exit
+    \ synchronize-panes
+    \ utf8
+    \ window-active-style
+    \ window-status-activity-style
+    \ window-status-bell-style
+    \ window-status-current-format
+    \ window-status-current-style
+    \ window-status-format
+    \ window-status-last-style
+    \ window-status-separator
+    \ window-status-style
+    \ window-style
+    \ wrap-search
+    \ xterm-keys
 
 " keywords for vi/emacs edit, choice and copy modes
 syn keyword tmuxModeCmds append-selection back-to-indentation backspace
