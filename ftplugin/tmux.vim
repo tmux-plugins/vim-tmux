@@ -11,7 +11,7 @@ setlocal commentstring=#\ %s
 
 if v:version > 704 || v:version == 704 && has('patch32')
   let s:map_dict = maparg('K', 'n', 0, 1)
-  if empty(s:map_dict) || ! s:map_dict['buffer']
+  if empty(s:map_dict) && ! s:map_dict['buffer']
     nnoremap <silent><buffer> K :call tmux#man()<CR>
   endif
 elseif maparg('K','n') ==# ''
