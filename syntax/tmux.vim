@@ -84,7 +84,7 @@ syn keyword tmuxOptsSet display-panes-active-colour alternate-screen
 syn keyword tmuxOptsSet detach-on-destroy word-separators
 syn keyword tmuxOptsSet destroy-unattached exit-unattached focus-events set-clipboard
 syn keyword tmuxOptsSet bell-on-alert mouse-select-window mouse-utf8
-syn keyword tmuxOptsSet mouse-resize-pane
+syn keyword tmuxOptsSet mouse-resize-pane mouse
 syn keyword tmuxOptsSet renumber-windows visual-silence
 syn keyword tmuxOptsSet show[-options] showw show-window-options
 
