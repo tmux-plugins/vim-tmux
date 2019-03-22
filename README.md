@@ -22,6 +22,9 @@ When you edit `.tmux.conf` you get:
 * Vundle<br/>
 `Plugin 'tmux-plugins/vim-tmux'`
 
+* vim-plug<br/>
+`Plug 'tmux-plugins/vim-tmux'`
+
 * Pathogen<br/>
 `git clone git://github.com/tmux-plugins/vim-tmux.git ~/.vim/bundle/vim-tmux`
 
