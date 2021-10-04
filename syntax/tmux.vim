@@ -161,6 +161,7 @@ syn keyword tmuxTodo FIXME NOTE TODO XXX todo contained
 syn match tmuxURL `\v<(((https?|ftp|gopher)://|(mailto|file|news):)[^'  <>"]+|(www|web|w3)[a-z0-9_-]*\.[a-z0-9._-]+\.[^'  <>"]+)[a-zA-Z0-9/]` contained
 
 syn match tmuxKey               /\(C-\|M-\|\^\)\+\S\+/  display
+syn match tmuxKey               /\\["']/                display
 syn match tmuxNumber            /\<[+-]\?\d\+/          display
 syn match tmuxSelWindowOption   /:[!+-]\?/              display
 syn match tmuxOptions           /\s-\a\+/               display
