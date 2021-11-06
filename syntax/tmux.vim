@@ -171,7 +171,7 @@ syn match tmuxAdditionalCommand /\\;/ display
 
 " concatenating flag '-t' or '-T' and table name is a valid syntax
 syn match tmuxKeyTable /\s\(-t\)\?\(vi-edit\|emacs-edit\|vi-choice\|emacs-choice\|vi-copy\|emacs-copy\)/ display
-syn match tmuxKeyTable /\s\(-T\)\?\(copy-mode\|copy-mode-vi\)/ display
+syn match tmuxKeyTable /\s\(-T\)\?copy-mode\(-vi\)\?/ display
 
 syn match tmuxColor /\(bright\)\?\(black\|red\|green\|yellow\|blue\|magenta\|cyan\|white\)/ display
 syn match tmuxColor /default/        display
