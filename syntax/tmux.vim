@@ -228,7 +228,7 @@ hi def link tmuxKey                 Special
 hi def link tmuxKeySymbol           Special
 hi def link tmuxNumber              Number
 hi def link tmuxSelWindowOption     Number
-hi def link tmuxOptions             Operator
+hi def link tmuxOptions             Special
 hi def link tmuxOptsSet             PreProc
 hi def link tmuxUserOptsSet         Identifier
 hi def link tmuxOptsSetw            PreProc
